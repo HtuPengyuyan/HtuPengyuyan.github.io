@@ -8,14 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>HtuPengyuyan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="大家都还在看新的日出，只有我还在盯着那天的日落">
+  <meta name="description" content="个人站">
 <meta property="og:type" content="website">
 <meta property="og:title" content="HtuPengyuyan的博客">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="HtuPengyuyan的博客">
-<meta property="og:description" content="大家都还在看新的日出，只有我还在盯着那天的日落">
+<meta property="og:description" content="个人站">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="HtuPengyuyan">
+<meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="HtuPengyuyan的博客" type="application/atom+xml">
@@ -50,10 +51,14 @@
 			</a>
 			<hgroup>
 				<h1 class="header-author"><a href="/">
-						
+						HtuPengyuyan
 					</a></h1>
 			</hgroup>
 			
+				<p class="header-subtitle">
+					HtuPengyuyan
+				</p>
+				
 
 					<nav class="header-menu">
 						<ul>
@@ -161,8 +166,10 @@
 				<img src="/img/profile.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author"></h1>
+			  <h1 class="header-author js-header-author">HtuPengyuyan</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>HtuPengyuyan<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -236,6 +243,9 @@
 </blockquote>
 <h5 id="2-调用open函数-用来指定请求方式和url地址"><a href="#2-调用open函数-用来指定请求方式和url地址" class="headerlink" title="2.调用open函数 #用来指定请求方式和url地址"></a>2.调用open函数 #用来指定请求方式和url地址</h5><blockquote>
 <p>xhr.open(‘get’,’<a target="_blank" rel="noopener" href="http://www.htupengyuyan.github&/#39;">http://www.HtuPengyuyan.github&#39;</a>)</p>
+</blockquote>
+<h5 id="post请求多一步Content-Types属性（固定写法）"><a href="#post请求多一步Content-Types属性（固定写法）" class="headerlink" title="post请求多一步Content-Types属性（固定写法）"></a>post请求多一步Content-Types属性（固定写法）</h5><blockquote>
+<p>xhr.setRequestHeader(‘Content-Type’,’application&#x2F;zx-www-form-urlenooded’)</p>
 </blockquote>
 <h5 id="3-调用send函数，发起Ajax请求"><a href="#3-调用send函数，发起Ajax请求" class="headerlink" title="3.调用send函数，发起Ajax请求"></a>3.调用send函数，发起Ajax请求</h5><blockquote>
 <p>xhr.send()</p>
