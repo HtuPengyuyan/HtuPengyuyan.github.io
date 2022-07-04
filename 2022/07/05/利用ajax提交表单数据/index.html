@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | HtuPengyuyan的博客</title>
+  <title>利用ajax提交表单数据 | HtuPengyuyan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HtuPengyuyan的博客">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="创建表单12345&lt;form action&#x3D;&quot;&#x2F;login&quot; id&#x3D;&quot;f1&quot;&gt;  &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;user_name&quot; &#x2F;&gt;  &lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; &#x2F;&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用ajax提交表单数据">
+<meta property="og:url" content="http://example.com/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/index.html">
 <meta property="og:site_name" content="HtuPengyuyan的博客">
-<meta property="og:description" content="个人站">
+<meta property="og:description" content="创建表单12345&lt;form action&#x3D;&quot;&#x2F;login&quot; id&#x3D;&quot;f1&quot;&gt;  &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;user_name&quot; &#x2F;&gt;  &lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; &#x2F;&gt;">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-04T17:48:40.000Z">
+<meta property="article:modified_time" content="2022-07-04T17:57:06.421Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
@@ -216,184 +218,136 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-利用ajax提交表单数据" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      利用ajax提交表单数据
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/" class="archive-article-date">
+
+        
+        <a href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/" class="archive-article-date">
   	<time datetime="2022-07-04T17:48:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/">利用ajax提交表单数据</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="创建表单"><a href="#创建表单" class="headerlink" title="创建表单"></a>创建表单</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">&quot;/login&quot;</span> id=<span class="string">&quot;f1&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;user_name&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="监听表单元素拿到表单的值"><a href="#监听表单元素拿到表单的值" class="headerlink" title="监听表单元素拿到表单的值"></a>监听表单元素拿到表单的值</h3><h5 id="1-其中e-preventDefault-为阻止表单默认提交行为"><a href="#1-其中e-preventDefault-为阻止表单默认提交行为" class="headerlink" title="1.其中e.preventDefault()为阻止表单默认提交行为"></a>1.其中e.preventDefault()为阻止表单默认提交行为</h5><h5 id="2-‘-f1’-serialize-获取表单元素"><a href="#2-‘-f1’-serialize-获取表单元素" class="headerlink" title="2.$(‘#f1’).serialize()获取表单元素"></a>2.$(‘#f1’).serialize()获取表单元素</h5><h5 id="3-使用serialize-函数时必须给表单加name的值，否则无法提取表单元素"><a href="#3-使用serialize-函数时必须给表单加name的值，否则无法提取表单元素" class="headerlink" title="3.使用serialize()函数时必须给表单加name的值，否则无法提取表单元素"></a>3.使用serialize()函数时必须给表单加name的值，否则无法提取表单元素</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#f1&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;submit&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>()</span><br><span class="line">    <span class="keyword">var</span> data = $(<span class="string">&#x27;#f1&#x27;</span>).<span class="title function_">serialize</span>()</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/02/%E9%87%8D%E6%B8%A9xhr/" class="archive-article-date">
-  	<time datetime="2022-07-02T03:25:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/07/02/%E9%87%8D%E6%B8%A9xhr/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">重温xhr</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/02/%E9%87%8D%E6%B8%A9xhr/">重温xhr</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/02/%E9%87%8D%E6%B8%A9ajax/" class="archive-article-date">
-  	<time datetime="2022-07-02T02:42:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/02/%E9%87%8D%E6%B8%A9ajax/">重温ajax</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/01/%E5%88%9D%E8%AF%86yilia%E4%B8%BB%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2022-07-01T09:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/01/%E5%88%9D%E8%AF%86yilia%E4%B8%BB%E9%A2%98/">初识yilia主题</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/06/30/%E2%80%9C%E5%85%B3%E4%BA%8Emarkdown%E2%80%9D/" class="archive-article-date">
-  	<time datetime="2022-06-30T08:52:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/30/%E2%80%9C%E5%85%B3%E4%BA%8Emarkdown%E2%80%9D/">“关于markdown”</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/06/29/hello-world/" class="archive-article-date">
-  	<time datetime="2022-06-29T10:57:40.952Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/29/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -420,8 +374,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-			isArchive: true,
+		isPost: true,
+			isArchive: false,
 				isTag: false,
 					isCategory: false,
 						open_in_new: false,

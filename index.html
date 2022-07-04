@@ -218,6 +218,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-利用ajax提交表单数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/">利用ajax提交表单数据</a>
+    </h1>
+  
+
+        
+        <a href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/" class="archive-article-date">
+  	<time datetime="2022-07-04T17:48:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="创建表单"><a href="#创建表单" class="headerlink" title="创建表单"></a>创建表单</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">&quot;/login&quot;</span> id=<span class="string">&quot;f1&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;user_name&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="监听表单元素拿到表单的值"><a href="#监听表单元素拿到表单的值" class="headerlink" title="监听表单元素拿到表单的值"></a>监听表单元素拿到表单的值</h3><h5 id="1-其中e-preventDefault-为阻止表单默认提交行为"><a href="#1-其中e-preventDefault-为阻止表单默认提交行为" class="headerlink" title="1.其中e.preventDefault()为阻止表单默认提交行为"></a>1.其中e.preventDefault()为阻止表单默认提交行为</h5><h5 id="2-‘-f1’-serialize-获取表单元素"><a href="#2-‘-f1’-serialize-获取表单元素" class="headerlink" title="2.$(‘#f1’).serialize()获取表单元素"></a>2.$(‘#f1’).serialize()获取表单元素</h5><h5 id="3-使用serialize-函数时必须给表单加name的值，否则无法提取表单元素"><a href="#3-使用serialize-函数时必须给表单加name的值，否则无法提取表单元素" class="headerlink" title="3.使用serialize()函数时必须给表单加name的值，否则无法提取表单元素"></a>3.使用serialize()函数时必须给表单加name的值，否则无法提取表单元素</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#f1&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;submit&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>()</span><br><span class="line">    <span class="keyword">var</span> data = $(<span class="string">&#x27;#f1&#x27;</span>).<span class="title function_">serialize</span>()</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-重温xhr" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
