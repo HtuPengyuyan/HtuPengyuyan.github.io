@@ -3,14 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: HtuPengyuyan
-subtitle: '大家好，这里是HtuPengyuyan'
-description: ''
-keywords:
-author: John Doe
+title: HtuPengyuyan的博客
+subtitle: HtuPengyuyan的小站
+description: 个人站
+keywords: Css,JavaScript
+author: HtuPengyuyan
 language: zh-CN
 timezone: ''
-
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: http://example.com
@@ -97,7 +96,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: yilia
 
 
   # Deployment
@@ -108,6 +107,24 @@ deploy:
   branch: main # 默认使用 master 分支(Github现在改名为main分支)
   message: Update Hexo Static Content # 自定义的此次部署更新的说明
 
+jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
 
 
   
