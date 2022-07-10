@@ -16,7 +16,7 @@
 <meta property="og:description" content="Vue简介 1.Javascript框架2.简化DOM操作3.响应式数据驱动  初识Vue 1.想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象2.root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法3.root容器里的代码被称为{vue模板}4.Vue实例和容器时一一对应的5.真实开发中只有一个Vue实例，并且会配合着组件一起使用6.中的xxx要写js表达式，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-06T11:17:27.000Z">
-<meta property="article:modified_time" content="2022-07-09T07:55:49.371Z">
+<meta property="article:modified_time" content="2022-07-10T03:40:39.940Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
@@ -268,6 +268,33 @@
 <blockquote>
 </blockquote>
 <h2 id="数据代理"><a href="#数据代理" class="headerlink" title="数据代理"></a>数据代理</h2><h3 id="回顾defineProperty（）"><a href="#回顾defineProperty（）" class="headerlink" title="回顾defineProperty（）"></a>回顾defineProperty（）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">let</span> number =<span class="number">18</span></span><br><span class="line"><span class="keyword">let</span> person=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">    <span class="attr">sex</span>:<span class="string">&#x27;男&#x27;</span>,</span><br><span class="line">    <span class="comment">// age:&#x27;18&#x27;,</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用defineProperty给age值</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(person,<span class="string">&#x27;age&#x27;</span>,&#123;</span><br><span class="line">    <span class="comment">// value:18</span></span><br><span class="line">    <span class="comment">//enumberable:true//控制属性是否可以枚举，默认值时false</span></span><br><span class="line">    <span class="comment">//writable：true//控制属性是否可以被修改，默认值时false</span></span><br><span class="line">    <span class="comment">//configurable：true//控制属性是否可以被删除，默认值是false</span></span><br><span class="line">    <span class="comment">//当有人读取person的age属性时，get函数（getter）就会被调用，且返回值时age的值</span></span><br><span class="line">    get（）&#123;</span><br><span class="line">        <span class="keyword">return</span> number</span><br><span class="line">    &#125;，</span><br><span class="line">    <span class="comment">//当有人读取person的age属性时，get函数（getter）就会被调用，且返回值时age的值</span></span><br><span class="line">    set（）&#123;</span><br><span class="line">        number=value</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="数据代理-1"><a href="#数据代理-1" class="headerlink" title="数据代理"></a>数据代理</h2><blockquote>
+<p>定义：通过一个对象对另一个对象中属性的操作</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">let</span> obj=&#123;<span class="attr">x</span>:<span class="number">100</span>&#125;</span><br><span class="line"><span class="keyword">let</span> obj2=&#123;<span class="attr">y</span>:<span class="number">200</span>&#125;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(obj2,<span class="string">&#x27;x&#x27;</span>,&#123;</span><br><span class="line">    <span class="title function_">get</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> obj.<span class="property">x</span></span><br><span class="line">        <span class="comment">//调用obj.x的值</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">set</span>(<span class="params">value</span>)&#123;</span><br><span class="line">        obj.<span class="property">x</span>=value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Vue中的数据代理"><a href="#Vue中的数据代理" class="headerlink" title="Vue中的数据代理"></a>Vue中的数据代理</h3><blockquote>
+<p>通过vm对象来代理data对象中属性的操作</p>
+</blockquote>
+<h3 id="Vue中数据代理的好处："><a href="#Vue中数据代理的好处：" class="headerlink" title="Vue中数据代理的好处："></a>Vue中数据代理的好处：</h3><blockquote>
+<p>更加方便的操作data中的数据</p>
+</blockquote>
+<h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><blockquote>
+<p>1.通过Object.defineProperty（）把data对象中所有属性参加到vm上<br>  2. 为每一个参加到vm上的属性，都指定一个getter&#x2F;setter<br>  3. 在getter&#x2F;setter内部去操作（读&#x2F;写）data中对应的属性</p>
+</blockquote>
+<h2 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h2><blockquote>
+<p>Vue中的事件修饰符：<br> 1.prevent：阻止默认事件（常用）；<br> 2.stop：阻止事件冒泡（常用）；<br> 3.once：事件只触发一次（常用）；<br> 4.capture：使用事件的捕获模式；<br> 5.self：只有eventtarget是当前操作的元素时才触发事件；<br> 6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕；<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click.<span class="property">stop</span>=<span class="string">&#x27;showInfo&#x27;</span>&gt;点我提示信息&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h2><blockquote>
+<p>1.Vue中常用的按键别名<br>     回车 &#x3D;&gt; enter<br>     删除 &#x3D;&gt; delete（捕获“删除”和“退格”键）<br>     退出 &#x3D;&gt; esc<br>     空格 &#x3D;&gt; space<br>     换行 &#x3D;&gt; tab<br>     上 &#x3D;&gt; up<br>     下 &#x3D;&gt; down<br>     左 &#x3D;&gt; left<br>     右 &#x3D;&gt; right</p>
+</blockquote>
+<blockquote>
+<p>   2.系统修饰键（用法特殊）：ctrl、alt、shift、meta<br>      1.配合keyup使用：按下修饰键同时，再按下其他键，随后释放其他键，事件才被触发<br>      2.配合keydown使用：正常触发事件</p>
+</blockquote>
+<blockquote>
+<pre><code>3.Vue.config.keyCodes.自定义键名=键码，可以定制按键别名
+</code></pre>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;按下回车提示输入&quot;</span> @keydown.<span class="property">tab</span>=<span class="string">&quot;showInfo&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="vue的各种指令"><a href="#vue的各种指令" class="headerlink" title="vue的各种指令"></a>vue的各种指令</h2><h3 id="1-v-text指令"><a href="#1-v-text指令" class="headerlink" title="1.v-text指令"></a>1.v-text指令</h3><blockquote>
 <p> 使用v-text属性会使内容被替换</p>
 </blockquote>
