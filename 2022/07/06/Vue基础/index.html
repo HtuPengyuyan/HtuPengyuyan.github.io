@@ -16,8 +16,9 @@
 <meta property="og:description" content="Vue简介 1.Javascript框架2.简化DOM操作3.响应式数据驱动  初识Vue 1.想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象2.root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法3.root容器里的代码被称为{vue模板}4.Vue实例和容器时一一对应的5.真实开发中只有一个Vue实例，并且会配合着组件一起使用6.中的xxx要写js表达式，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/logo/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/1379492/1643034109512-1a1a9c24-a474-4022-83b6-b6a16216151a.png?x-oss-process=image/resize,w_1125,limit_0">
 <meta property="article:published_time" content="2022-07-06T11:17:27.000Z">
-<meta property="article:modified_time" content="2022-08-03T10:36:14.712Z">
+<meta property="article:modified_time" content="2022-08-04T07:16:44.875Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
@@ -444,6 +445,16 @@
 <li>第一种写法：<school></school></li>
 <li>第二种写法:<school/>（需要Vue脚手架的支持）</li>
 <li>备注：不使用脚手架时，<school/>会导致后续组件不能渲染<br>一个简写方式：const school&#x3D;Vue.extend(options)可简写为 const school&#x3D;options,因为父组件components引入的时候会自动创建</li>
+</ol>
+<h3 id="组件的嵌套"><a href="#组件的嵌套" class="headerlink" title="组件的嵌套"></a>组件的嵌套</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1379492/1643034109512-1a1a9c24-a474-4022-83b6-b6a16216151a.png?x-oss-process=image/resize,w_1125,limit_0"></p>
+<h3 id="VueComponent"><a href="#VueComponent" class="headerlink" title="VueComponent"></a>VueComponent</h3><ol>
+<li>school组件本质是一个名为VueComponent的构造函数，且不是程序员定义的，而是Vue.extend（）生成的</li>
+<li>我么只需要写<school/>或<school></school>，Vue解析时会帮我们创建school组件的实例对象，即Vue帮我们执行的new VueComponent（options）</li>
+<li>每次调用Vue.extend，返回的都是一个全新的VueCompoent，即不同的组件是不同的对象</li>
+<li>关于this指向</li>
+<li>组件配置中data 函数、methods中的函数、watch中的函数、computed中的函数它们的this均是VueComponent实例对象</li>
+<li>newVue（options）配置中：data函数、watch中的函数、computed中的函数它们的this均是Vue实例对象，即vm</li>
+<li>VueComponent的实例对象，以后简称vc（组件实例对象）Vue的实例对象，以后简称为vm</li>
 </ol>
 
       
