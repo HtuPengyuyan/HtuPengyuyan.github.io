@@ -15,11 +15,18 @@
 <meta property="og:site_name" content="HtuPengyuyan的博客">
 <meta property="og:description" content="用MySQL数据库创建表格 创建数据库1CREATE DATABASE student 删除数据库1drop database student 创建完数据库需要刷新才能出现数据库 创建表格  需要先确定列的类型123456USE student;CREATE TABLE myTable(    sno CHAR(9) PRIMARY KEY(设置主键，主键是唯一的),    sa SMALLINT">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/student%E8%A1%A8.png">
+<meta property="og:image" content="http://example.com/img/sc%E8%A1%A8.png">
+<meta property="og:image" content="http://example.com/img/course%E8%A1%A8.png">
+<meta property="og:image" content="http://example.com/img/%E7%AD%89%E5%80%BC%E6%9F%A5%E8%AF%A2.png">
+<meta property="og:image" content="http://example.com/img/%E8%87%AA%E8%BA%AB%E8%BF%9E%E6%8E%A5png">
+<meta property="og:image" content="http://example.com/img/IN%E8%B0%93%E8%AF%8Dpng">
 <meta property="article:published_time" content="2022-09-22T01:47:11.000Z">
-<meta property="article:modified_time" content="2022-09-24T09:03:02.558Z">
+<meta property="article:modified_time" content="2022-10-10T15:01:10.780Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/student%E8%A1%A8.png">
   
     <link rel="alternative" href="/atom.xml" title="HtuPengyuyan的博客" type="application/atom+xml">
   
@@ -270,6 +277,49 @@
 <h5 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查询编号大于三的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> id<span class="operator">&gt;</span><span class="number">3</span></span><br><span class="line">查询姓名不是张三的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> name <span class="operator">!=</span><span class="string">&#x27;张三&#x27;</span></span><br></pre></td></tr></table></figure>
 <h5 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="keyword">or</span> <span class="keyword">not</span></span><br><span class="line">查询编号大于三的女同学</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> id<span class="operator">=</span><span class="number">3</span> <span class="keyword">and</span> gender<span class="operator">=</span><span class="number">0</span></span><br><span class="line">查询编号小于四或没被删除的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> id<span class="operator">&lt;</span><span class="number">4</span> <span class="keyword">or</span> is_delete</span><br></pre></td></tr></table></figure>
 <h5 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">in</span> 和 <span class="keyword">between</span> <span class="keyword">and</span></span><br><span class="line"><span class="keyword">in</span> 用在一个非连续的范围内</span><br><span class="line">查询编号为<span class="number">1</span>或<span class="number">3</span>或<span class="number">8</span>的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">where</span> id <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">3</span>,<span class="number">8</span>) </span><br><span class="line"><span class="keyword">between</span> <span class="keyword">and</span> 表示在一个连续的范围内</span><br><span class="line">查询编号<span class="number">3</span><span class="number">-8</span>的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> id <span class="keyword">between</span> <span class="number">3</span> <span class="keyword">and</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/student%E8%A1%A8.png"><br><img src="/img/sc%E8%A1%A8.png"><br><img src="/img/course%E8%A1%A8.png"></p>
+<h5 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h5><p>连接查询：同时涉及两个以上的表的查询<br>连接条件或连接谓词：用来连接两个表的条件<br>注：连接条件中的各连接字段类型必须是可比的，但名字不必相同</p>
+<h5 id="等值与非等值连接查询"><a href="#等值与非等值连接查询" class="headerlink" title="等值与非等值连接查询"></a>等值与非等值连接查询</h5><p>等值连接：连接运算符为&#x3D;<br>查询每个学生及其选修课程情况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> stu.<span class="operator">*</span>, SC.<span class="operator">*</span></span><br><span class="line">     <span class="keyword">FROM</span>     Student stu, SC</span><br><span class="line">     <span class="keyword">WHERE</span> stu.Sno <span class="operator">=</span> SC.Sno;</span><br></pre></td></tr></table></figure>
+<p>查询结果<br><img src="/img/%E7%AD%89%E5%80%BC%E6%9F%A5%E8%AF%A2.png"></p>
+<h5 id="嵌套循环法"><a href="#嵌套循环法" class="headerlink" title="嵌套循环法"></a>嵌套循环法</h5><p>首先在表1中找到第一个元组，然后从头开始扫描表2，逐一查找满足连接件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组。<br>表2全部查找完后，再找表1中第二个元组，然后再从头开始扫描表2，逐一查找满足连接条件的元组，找到后就将表1中的第二个元组与该元组拼接起来，形成结果表中一个元组。</p>
+<h5 id="排序合并法"><a href="#排序合并法" class="headerlink" title="排序合并法"></a>排序合并法</h5><p>常用于&#x3D;连接<br>首先按连接属性对表1和表2排序<br>对表1的第一个元组，从头开始扫描表2，顺序查找满足连接条件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组。当遇到表2中第一条大于表1连接字段值的元组时，对表2的查询不再继续</p>
+<h5 id="索引连接"><a href="#索引连接" class="headerlink" title="索引连接"></a>索引连接</h5><p>对表2按连接字段建立索引<br>对表1中的每个元组，依次根据其连接字段值查询表2的索引，从中找到满足条件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组</p>
+<h5 id="自身连接"><a href="#自身连接" class="headerlink" title="自身连接"></a>自身连接</h5><p>自身连接：一个表与其自己进行连接<br>注：1. 需要给表起别名用来区分<br>    2.由于所有属性名都是同名属性，因此必须用别名前缀<br>    3.要为单个表取两个别名，一个是first，另一个是second</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  FIRST.Cno, SECOND.Cpno</span><br><span class="line">        <span class="keyword">FROM</span>  Course  <span class="keyword">FIRST</span>, Course  <span class="keyword">SECOND</span></span><br><span class="line">        <span class="keyword">WHERE</span> FIRST.Cpno <span class="operator">=</span> SECOND.Cno;</span><br></pre></td></tr></table></figure>
+<p><img src="/img/%E8%87%AA%E8%BA%AB%E8%BF%9E%E6%8E%A5png"></p>
+<h5 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h5><ol>
+<li>普通连接操作只输出满足连接条件的元组</li>
+<li>外连接操作以指定表为连接主体，将主体表中不满足连接条件的元组一并输出</li>
+<li>左外连接<br>列出左边关系中所有的元组 </li>
+<li>右外连接<br>列出右边关系中所有的元组</li>
+</ol>
+<h5 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h5><p>多表连接：两个以上的表进行连接<br>查询每个学生的学号、姓名、选修的课程名及成绩</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Student.Sno,Sname,Cname,Grade</span><br><span class="line"><span class="keyword">From</span> Student,Sc,Course</span><br><span class="line"><span class="keyword">Where</span> Student.Sno<span class="operator">=</span>SC.Sno</span><br><span class="line"><span class="keyword">And</span> SC.Cno<span class="operator">=</span>Course.cno;</span><br></pre></td></tr></table></figure>
+<h5 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h5><p>一个SELECT-FROM-WHERE语句称为一个查询块<br>将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sname	                           <span class="comment">/*外层查询/父查询*/</span></span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sno <span class="keyword">IN</span></span><br><span class="line">                   ( <span class="keyword">SELECT</span> Sno        <span class="comment">/*内层查询/子查询*/</span></span><br><span class="line">                     <span class="keyword">FROM</span> SC</span><br><span class="line">                     <span class="keyword">WHERE</span> Cno<span class="operator">=</span> <span class="string">&#x27; 2 &#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>上层的查询块称为外层查询或父查询<br>下层查询块称为内层查询或子查询<br>注：</p>
+<ol>
+<li>SQL语言允许多层嵌套查询<br>即一个子查询中还可以嵌套其他子查询</li>
+<li>子查询的限制<br>不能使用ORDER BY</li>
+</ol>
+<h6 id="嵌套查询求解方法"><a href="#嵌套查询求解方法" class="headerlink" title="嵌套查询求解方法"></a>嵌套查询求解方法</h6><p>不相关子查询：</p>
+<ol>
+<li>子查询的查询条件不依赖于父查询</li>
+<li>由里向外 逐层处理。即每个子查询在上一级查询处理之前求解，子查询的结果用于建立其父查询的查找条件<br>相关子查询：子查询的查询条件依赖于父查询</li>
+<li>首先取外层查询中表的第一个元组，根据它与内层查询相关的属性值处理内层查询，若where返回值为真，则取此元组放入结果表中</li>
+<li>然后再取外层表的下一个元组</li>
+<li>重复这一过程，直至外层表全部检查完为止</li>
+</ol>
+<h6 id="带有IN谓词的子查询"><a href="#带有IN谓词的子查询" class="headerlink" title="带有IN谓词的子查询"></a>带有IN谓词的子查询</h6><p>查询与“刘晨”在同一个系学习的学生。（此查询要求可以分步来完成）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="operator">&lt;</span><span class="operator">!</span><span class="comment">-- 确定“刘晨”所在系名              --&gt;</span></span><br><span class="line">  <span class="keyword">SELECT</span>  Sdept  </span><br><span class="line">  <span class="keyword">FROM</span>     Student                            </span><br><span class="line">  <span class="keyword">WHERE</span>  Sname<span class="operator">=</span> <span class="string">&#x27; 刘晨 &#x27;</span>;</span><br><span class="line"><span class="operator">&lt;</span><span class="operator">!</span><span class="comment">-- 结果为： CS --&gt;</span></span><br></pre></td></tr></table></figure>
+<p>查找所有在CS系学习的学生。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>   Sno, Sname, Sdept     </span><br><span class="line">        <span class="keyword">FROM</span>      Student                 </span><br><span class="line">        <span class="keyword">WHERE</span>   Sdept<span class="operator">=</span> <span class="string">&#x27; CS &#x27;</span>; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/img/IN%E8%B0%93%E8%AF%8Dpng"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sno, Sname, Sdept</span><br><span class="line">   	<span class="keyword">FROM</span> Student</span><br><span class="line">  	<span class="keyword">WHERE</span> Sdept  <span class="keyword">IN</span></span><br><span class="line">                 (<span class="keyword">SELECT</span> Sdept</span><br><span class="line">                  <span class="keyword">FROM</span> Student</span><br><span class="line">                  <span class="keyword">WHERE</span> Sname<span class="operator">=</span> <span class="string">&#x27; 刘晨 &#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
 
 
       
