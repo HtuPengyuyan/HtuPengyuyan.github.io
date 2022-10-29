@@ -15,13 +15,13 @@
 <meta property="og:site_name" content="HtuPengyuyan的博客">
 <meta property="og:description" content="小知识点token原理分析客户端     (登录页面输入用户名和密码进行登录)—–&gt;                   服务器           &lt;—–(服务器验证通过之后生成该用户的token并返回)      -----|(客户端存储该token)      &lt;----|        (后续所有的请求都携带该token发送请求)------&gt;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/query.png">
+<meta property="og:image" content="http://example.com/img/tree-table.png">
 <meta property="article:published_time" content="2022-10-09T11:36:40.000Z">
-<meta property="article:modified_time" content="2022-10-29T07:55:38.117Z">
+<meta property="article:modified_time" content="2022-10-29T08:03:42.881Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/query.png">
+<meta name="twitter:image" content="http://example.com/img/tree-table.png">
   
     <link rel="alternative" href="/atom.xml" title="HtuPengyuyan的博客" type="application/atom+xml">
   
@@ -330,7 +330,7 @@
 <p>scrpt写入</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">columns</span>: [</span><br><span class="line">        <span class="comment">// 注：columns为树形结构中的列部分</span></span><br><span class="line">        <span class="comment">//  传入需要使用的数据及名称</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">label</span>: <span class="string">&#x27;分类名称&#x27;</span>,</span><br><span class="line">          <span class="attr">prop</span>: <span class="string">&#x27;cat_name&#x27;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 下面为模板列具体格式</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">label</span>: <span class="string">&#x27;是否有效&#x27;</span>,</span><br><span class="line">          <span class="comment">//   表示，将当前列定义为模板列</span></span><br><span class="line">          <span class="attr">type</span>: <span class="string">&#x27;template&#x27;</span>,</span><br><span class="line">          <span class="comment">//   表示当前这一列使用模板名称</span></span><br><span class="line">          <span class="attr">template</span>: <span class="string">&#x27;isok&#x27;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">label</span>: <span class="string">&#x27;排序&#x27;</span>,</span><br><span class="line">          <span class="comment">//   表示，将当前列定义为模板列</span></span><br><span class="line">          <span class="attr">type</span>: <span class="string">&#x27;template&#x27;</span>,</span><br><span class="line">          <span class="comment">//   表示当前这一列使用模板名称</span></span><br><span class="line">          <span class="attr">template</span>: <span class="string">&#x27;order&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>树形结构基本api<br>  <img src="/img/query.png"></li>
+<li>树形结构基本api<br>  <img src="/img/tree-table.png"></li>
 </ol>
 
       
