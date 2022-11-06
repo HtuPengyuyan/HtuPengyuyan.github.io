@@ -218,6 +218,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Node-js基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/">Node.js基础</a>
+    </h1>
+  
+
+        
+        <a href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+  	<time datetime="2022-11-06T12:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="介绍终端"><a href="#介绍终端" class="headerlink" title="介绍终端"></a>介绍终端</h3><ol>
+<li>命令行窗口（小黑屏）、CMD窗口、终端、shell<ul>
+<li>开始菜单 –&gt; 运行 –&gt; CMD –&gt; 回车</li>
+<li>常用的指令：<br>   dir列出当前目录下的所有文件<br>   cd 目录名 进入指定的目录<br>   md 目录名 创建一个文件夹<br>   rd 目录名 删除一个文件夹</li>
+<li>目录<br>. 表示当前目录<br>.. 表示上一级目录<blockquote>
+</blockquote>
+<p>.&#x2F;style.css 同一级目录<br>..&#x2F;style.css 上一级目录</p>
+<blockquote>
+</blockquote>
+</li>
+<li>环境变量<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;</span><br><span class="line">D:\Microsoft VS Code\bin;</span><br><span class="line">C:\Users\Lenovo\AppData\Roaming\npm；</span><br><span class="line">C:\Users\Lenovo\Desktop\hello</span><br></pre></td></tr></table></figure>
+此时配置完用户变量后就可以直接用命令打开hello文件了</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>当我们在命令行窗口打开一个文件，或者调用一个程序时<br>系统会首先在当前目录下寻找文件程序，如果找到了则直接打开<br>如果没有找到则会依次到环境变量path的路径去寻找，直到找到为止<br>如果没有找到则报错</li>
+<li>我们可以将一些经常需要的访问程序和文件的路径添加到path中，<br>这样我们就可以在任意位置来访问这些文件和程序了</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ES6语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -481,9 +562,10 @@ b. 省略花括号，当代码体只有一条语句的时候，此时return也�
                                              |------&gt;
 
 
-                                             ### 利用confirm删除文件
+                                             
+                                             
 </code></pre>
-<p>首先根据api中的接口创造一个函数包括弹窗组件</p>
+<h3 id="利用confirm删除文件"><a href="#利用confirm删除文件" class="headerlink" title="利用confirm删除文件"></a>利用confirm删除文件</h3><p>首先根据api中的接口创造一个函数包括弹窗组件</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">async</span> <span class="title function_">removeRightById</span>(<span class="params">role, rightId</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 弹框提示用户是否要删除</span></span></span><br><span class="line"><span class="language-javascript">     <span class="comment">// 此文段为复制element UI复制的一个提示框</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> confirmResult = <span class="keyword">await</span> <span class="variable language_">this</span>.$confirm(</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// comfirmResult接收confirm返回的参数</span></span></span><br><span class="line"><span class="language-javascript">        <span class="string">&#x27;此操作将永久删除该文件, 是否继续?&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="string">&#x27;提示&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">confirmButtonText</span>: <span class="string">&#x27;确定&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">cancelButtonText</span>: <span class="string">&#x27;取消&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">type</span>: <span class="string">&#x27;warning&#x27;</span></span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// catch捕获错误并返回错误</span></span></span><br><span class="line"><span class="language-javascript">      ).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> err)</span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 判断是否删除</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// 不删除则打印取消了删除</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (confirmResult !== <span class="string">&#x27;confirm&#x27;</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$message</span>.<span class="title function_">info</span>(<span class="string">&#x27;取消了删除！&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//  删除了则调用端口</span></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> &#123; <span class="attr">data</span>: res &#125; = <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="property">$http</span>.<span class="title function_">delete</span>(</span></span><br><span class="line"><span class="language-javascript">        <span class="string">`roles/<span class="subst">$&#123;role.id&#125;</span>/rights/<span class="subst">$&#123;rightId&#125;</span>`</span></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 字符串拼接</span></span></span><br><span class="line"><span class="language-javascript">      )</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (res.<span class="property">meta</span>.<span class="property">status</span> !== <span class="number">200</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$message</span>.<span class="title function_">error</span>(<span class="string">&#x27;删除权限失败！&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// this.getRolesList()</span></span></span><br><span class="line"><span class="language-javascript">      role.<span class="property">children</span> = res.<span class="property">data</span></span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="获取更新页面数据"><a href="#获取更新页面数据" class="headerlink" title="获取更新页面数据"></a>获取更新页面数据</h3><ol>
@@ -1653,68 +1735,6 @@ changeOrigin设置为true时，服务器收到的请求头中的host为：localh
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/02/%E9%87%8D%E6%B8%A9ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-初识yilia主题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/01/%E5%88%9D%E8%AF%86yilia%E4%B8%BB%E9%A2%98/">初识yilia主题</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/01/%E5%88%9D%E8%AF%86yilia%E4%B8%BB%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2022-07-01T09:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/01/%E5%88%9D%E8%AF%86yilia%E4%B8%BB%E9%A2%98/">展开全文 >></a>
         </p>
       
 
