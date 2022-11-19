@@ -218,6 +218,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Echarts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/11/19/Echarts/">Echarts</a>
+    </h1>
+  
+
+        
+        <a href="/2022/11/19/Echarts/" class="archive-article-date">
+  	<time datetime="2022-11-19T07:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="使用Echarts"><a href="#使用Echarts" class="headerlink" title="使用Echarts"></a>使用Echarts</h3><ol>
+<li>安装开发依赖Echarts<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install echarts --save</span><br></pre></td></tr></table></figure></li>
+<li>在main.js中全局引入<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入Echarts</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> echarts <span class="keyword">from</span> <span class="string">&#x27;echarts&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$echarts</span> = echarts</span><br></pre></td></tr></table></figure></li>
+<li>进行引用<br><strong>注意用$ref操作dom元素</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    list</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;myechart&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 600px; height: 400px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="variable language_">this</span>.<span class="title function_">setChart</span>()</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="attr">methods</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="title function_">setChart</span>(<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">var</span> myChart = <span class="variable language_">this</span>.<span class="property">$echarts</span>.<span class="title function_">init</span>(<span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">myechart</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="comment">// 指定图表的配置项和数据</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="keyword">var</span> option = &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">title</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="attr">text</span>: <span class="string">&#x27;ECharts 入门示例&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">tooltip</span>: &#123;&#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">legend</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="attr">data</span>: [<span class="string">&#x27;销量&#x27;</span>]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">xAxis</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="attr">data</span>: [<span class="string">&#x27;衬衫&#x27;</span>, <span class="string">&#x27;羊毛衫&#x27;</span>, <span class="string">&#x27;雪纺衫&#x27;</span>, <span class="string">&#x27;裤子&#x27;</span>, <span class="string">&#x27;高跟鞋&#x27;</span>, <span class="string">&#x27;袜子&#x27;</span>]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">yAxis</span>: &#123;&#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">series</span>: [</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="attr">name</span>: <span class="string">&#x27;销量&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="attr">type</span>: <span class="string">&#x27;bar&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="attr">data</span>: [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">20</span>]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        ]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="comment">// 使用刚指定的配置项和数据显示图表。</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      myChart.<span class="title function_">setOption</span>(option)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">&quot;&quot;</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/11/19/Echarts/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Node-js基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1833,68 +1900,6 @@ changeOrigin设置为true时，服务器收到的请求头中的host为：localh
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/02/%E9%87%8D%E6%B8%A9xhr/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-重温ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/02/%E9%87%8D%E6%B8%A9ajax/">重温ajax</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/02/%E9%87%8D%E6%B8%A9ajax/" class="archive-article-date">
-  	<time datetime="2022-07-02T02:42:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="关于聊天机器人发起请求获取聊天消息"><a href="#关于聊天机器人发起请求获取聊天消息" class="headerlink" title="关于聊天机器人发起请求获取聊天消息"></a>关于聊天机器人发起请求获取聊天消息</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getMsg</span>(<span class="params">text</span>)&#123;</span><br><span class="line">    $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">        <span class="attr">method</span>:<span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">        <span class="attr">url</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="attr">data</span>:&#123;</span><br><span class="line">            <span class="attr">spoken</span>:text</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params">res</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(res.<span class="property">message</span>===<span class="string">&#x27;success&#x27;</span>)&#123;</span><br><span class="line">                <span class="keyword">var</span> msg=res.<span class="property">data</span>.<span class="property">info</span>.<span class="property">text</span>  # 调取成功后的内容存放在res.<span class="property">data</span>.<span class="property">info</span>.<span class="property">text</span>里</span><br><span class="line">                $(<span class="string">&#x27;$talk_list&#x27;</span>).<span class="title function_">append</span>(<span class="string">&#x27;&lt;li class=&quot;left_word&quot;&gt;&lt;img src=&quot;img/person01.png&quot;&gt;&#x27;</span>/&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#x27;+msg+&#x27;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>&lt;li&gt;<span class="string">&#x27;)</span></span><br><span class="line"><span class="string">                resetui(); # 输完内容后滚动条在最下面</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;)</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/02/%E9%87%8D%E6%B8%A9ajax/">展开全文 >></a>
         </p>
       
 
