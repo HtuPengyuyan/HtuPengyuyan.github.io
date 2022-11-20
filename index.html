@@ -218,6 +218,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-rem布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/11/20/rem%E5%B8%83%E5%B1%80/">rem布局</a>
+    </h1>
+  
+
+        
+        <a href="/2022/11/20/rem%E5%B8%83%E5%B1%80/" class="archive-article-date">
+  	<time datetime="2022-11-20T04:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="rem布局"><a href="#rem布局" class="headerlink" title="rem布局"></a>rem布局</h3><p><strong>em和rem的认识</strong><br>em： 相对于当前父元素的字体大小&gt;&gt;&gt;1em&#x3D;父元素标签的font-size<br>rem： 相对于根元素（html）的字体大小&gt;&gt;&gt;html标签的font-size（浏览器默认的font-size的大小为16px）</p>
+<h5 id="rem布局的效果："><a href="#rem布局的效果：" class="headerlink" title="rem布局的效果："></a>rem布局的效果：</h5><ul>
+<li>屏幕越大，标签就越大</li>
+<li>屏幕越小，标签就越小</li>
+</ul>
+<h5 id="rem布局的原理："><a href="#rem布局的原理：" class="headerlink" title="rem布局的原理："></a>rem布局的原理：</h5><p><strong>通过媒体查询的方式动态改变html标签的font-size的大小</strong></p>
+<ul>
+<li>当屏幕越大，让html标签的font-size变大即可</li>
+<li>当屏幕越小，让html标签的font-size变小即可</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/11/20/rem%E5%B8%83%E5%B1%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Echarts" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1823,83 +1895,6 @@ changeOrigin设置为true时，服务器收到的请求头中的host为：localh
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-重温xhr" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/02/%E9%87%8D%E6%B8%A9xhr/">重温xhr</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/02/%E9%87%8D%E6%B8%A9xhr/" class="archive-article-date">
-  	<time datetime="2022-07-02T03:25:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="关于xhr的get和post请求"><a href="#关于xhr的get和post请求" class="headerlink" title="关于xhr的get和post请求"></a>关于xhr的get和post请求</h3><h5 id="1-创建xhr对象"><a href="#1-创建xhr对象" class="headerlink" title="1.创建xhr对象"></a>1.创建xhr对象</h5><blockquote>
-<p>var xhr &#x3D;new XMLHttpRequest()</p>
-</blockquote>
-<h5 id="2-调用open函数-用来指定请求方式和url地址"><a href="#2-调用open函数-用来指定请求方式和url地址" class="headerlink" title="2.调用open函数 #用来指定请求方式和url地址"></a>2.调用open函数 #用来指定请求方式和url地址</h5><blockquote>
-<p>xhr.open(‘get’,’<a target="_blank" rel="noopener" href="http://www.htupengyuyan.github&/#39;">http://www.HtuPengyuyan.github&#39;</a>)</p>
-</blockquote>
-<h5 id="post请求多一步Content-Types属性（固定写法）"><a href="#post请求多一步Content-Types属性（固定写法）" class="headerlink" title="post请求多一步Content-Types属性（固定写法）"></a>post请求多一步Content-Types属性（固定写法）</h5><blockquote>
-<p>xhr.setRequestHeader(‘Content-Type’,’application&#x2F;zx-www-form-urlenooded’)</p>
-</blockquote>
-<h5 id="3-调用send函数，发起Ajax请求"><a href="#3-调用send函数，发起Ajax请求" class="headerlink" title="3.调用send函数，发起Ajax请求"></a>3.调用send函数，发起Ajax请求</h5><blockquote>
-<p>xhr.send()</p>
-</blockquote>
-<h5 id="4-监听onreadystatechange事件"><a href="#4-监听onreadystatechange事件" class="headerlink" title="4.监听onreadystatechange事件"></a>4.监听onreadystatechange事件</h5><blockquote>
-<p>xhr.onreadystatechange&#x3D;function(){<br>    &#x2F;&#x2F;监听xhr对象的请求状态 readyState ； 与服务器相应的状态 status<br>if( xhr.readyState &#x3D;&#x3D;&#x3D; 4 &amp;&amp; xhr.status&#x3D;&#x3D;&#x3D;200){<br>    &#x2F;&#x2F;代表获取数据成功<br>    console.log(xhr.responseText);<br>}<br>}</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/02/%E9%87%8D%E6%B8%A9xhr/">展开全文 >></a>
         </p>
       
 
