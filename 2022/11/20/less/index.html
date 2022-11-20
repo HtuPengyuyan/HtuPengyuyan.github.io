@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | HtuPengyuyan的博客</title>
+  <title>less | HtuPengyuyan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HtuPengyuyan的博客">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="初始less less作为一门CSS扩展语言，也就是说CSS预处理器。（Leaner Style Sheets）简称less，它只不过是为css新增这些的功能，比如说：变量、函数、作用域等等。它的优点是：更具有维护性、扩展性等，可以降低了维护的成本，根据按这样的话，那么less可以让我们写更少的代码做更多的事情。 和css相比下，css的语法非常简单，而且对开发者来说要求比较低，比较合适小白者，但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="less">
+<meta property="og:url" content="http://example.com/2022/11/20/less/index.html">
 <meta property="og:site_name" content="HtuPengyuyan的博客">
-<meta property="og:description" content="个人站">
+<meta property="og:description" content="初始less less作为一门CSS扩展语言，也就是说CSS预处理器。（Leaner Style Sheets）简称less，它只不过是为css新增这些的功能，比如说：变量、函数、作用域等等。它的优点是：更具有维护性、扩展性等，可以降低了维护的成本，根据按这样的话，那么less可以让我们写更少的代码做更多的事情。 和css相比下，css的语法非常简单，而且对开发者来说要求比较低，比较合适小白者，但">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-20T08:55:23.000Z">
+<meta property="article:modified_time" content="2022-11-20T09:08:32.880Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
@@ -216,295 +218,149 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-less" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      less
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/20/less/" class="archive-article-date">
+
+        
+        <a href="/2022/11/20/less/" class="archive-article-date">
   	<time datetime="2022-11-20T08:55:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-20</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/20/less/">less</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="初始less"><a href="#初始less" class="headerlink" title="初始less"></a>初始less</h3><p> less作为一门CSS扩展语言，也就是说CSS预处理器。（Leaner Style Sheets）简称less，它只不过是为css新增这些的功能，比如说：变量、函数、作用域等等。它的优点是：更具有维护性、扩展性等，可以降低了维护的成本，根据按这样的话，那么less可以让我们写更少的代码做更多的事情。</p>
+<pre><code>和css相比下，css的语法非常简单，而且对开发者来说要求比较低，比较合适小白者，但是遇到有些问题，比如没有这种变量、函数等等，的确还不如less的扩展性，需要写大量的代码，但是看眼中的确没有逻辑的代码，CSS冗余度是比较高的。不方便维护，不利于复用，而且没有计算的能力。
+</code></pre>
+<p>   如果对css有基础的话，less很容易上手的。因为css和less区别不大的，反正可以通过编译生成浏览器能识别的css文件。</p>
+<h3 id="less使用"><a href="#less使用" class="headerlink" title="less使用"></a>less使用</h3><p><strong>可以进行嵌套</strong></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.contain</span>&#123;</span><br><span class="line">  <span class="selector-class">.row</span>&#123;</span><br><span class="line">    <span class="selector-class">.com</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>生成变量</strong><br>@变量名:变量值;<br>@color:#fff+#111</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@nice-blue:</span> <span class="number">#5B83AD</span>;</span><br><span class="line"><span class="variable">@light-blue:</span> <span class="variable">@nice-blue</span> + <span class="number">#111</span>;</span><br><span class="line"><span class="selector-tag">li</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">22%</span>;</span><br><span class="line">    <span class="attribute">line-height</span>:<span class="number">36px</span>;</span><br><span class="line">        <span class="selector-tag">a</span>&#123;</span><br><span class="line">            <span class="attribute">text-decoration</span>: none;</span><br><span class="line">            <span class="attribute">color</span>:<span class="variable">@nice-blue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span>&#123; <span class="attribute">color</span>:<span class="variable">@light-blue</span>; &#125;</span><br><span class="line">            <span class="comment">// &amp;添加这个代表在a元素上架了hover</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>转换后的css</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">li</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#5B83AD</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">li</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#6c94be</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="less运算"><a href="#less运算" class="headerlink" title="less运算"></a>less运算</h3><ul>
+<li>乘号（*）和除号（&#x2F;）的写法</li>
+<li>运算符中间左右有个空格隔开1px + 5</li>
+<li>对于两个不同单位的值进行运算，运算结果的值取第一个值的单位</li>
+<li>如果两个值只有一个值有单位，则运算结果就取该单位<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">width</span>:<span class="number">82rem</span>/<span class="number">15px</span> <span class="comment">// 单位为rem</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/11/20/less/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/20/rem%E5%B8%83%E5%B1%80/" class="archive-article-date">
-  	<time datetime="2022-11-20T04:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/20/rem%E5%B8%83%E5%B1%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">rem布局</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/20/rem%E5%B8%83%E5%B1%80/">rem布局</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/19/Echarts/" class="archive-article-date">
-  	<time datetime="2022-11-19T07:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/19/Echarts/">Echarts</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2022-11-06T12:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/">Node.js基础</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/10/19/ES6%E8%AF%AD%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2022-10-19T03:01:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/19/ES6%E8%AF%AD%E6%B3%95/">ES6语法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/10/09/vue%E5%AE%9E%E6%88%98shop/" class="archive-article-date">
-  	<time datetime="2022-10-09T11:36:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/09/vue%E5%AE%9E%E6%88%98shop/">vue实战shop</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/10/06/vue-%E5%B0%8F%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2022-10-06T07:50:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/06/vue-%E5%B0%8F%E7%9F%A5%E8%AF%86/">vue 小知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/09/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" class="archive-article-date">
-  	<time datetime="2022-09-22T01:47:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/">数据库系统概论</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/06/Vue%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2022-07-06T11:17:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/06/Vue%E5%9F%BA%E7%A1%80/">Vue基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/05/%E5%88%9D%E8%AF%86XHR/" class="archive-article-date">
-  	<time datetime="2022-07-05T05:13:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/05/%E5%88%9D%E8%AF%86XHR/">初识XHR</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -532,8 +388,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-			isArchive: true,
+		isPost: true,
+			isArchive: false,
 				isTag: false,
 					isCategory: false,
 						open_in_new: false,

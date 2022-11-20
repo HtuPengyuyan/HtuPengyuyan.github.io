@@ -218,6 +218,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-less" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/11/20/less/">less</a>
+    </h1>
+  
+
+        
+        <a href="/2022/11/20/less/" class="archive-article-date">
+  	<time datetime="2022-11-20T08:55:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="初始less"><a href="#初始less" class="headerlink" title="初始less"></a>初始less</h3><p> less作为一门CSS扩展语言，也就是说CSS预处理器。（Leaner Style Sheets）简称less，它只不过是为css新增这些的功能，比如说：变量、函数、作用域等等。它的优点是：更具有维护性、扩展性等，可以降低了维护的成本，根据按这样的话，那么less可以让我们写更少的代码做更多的事情。</p>
+<pre><code>和css相比下，css的语法非常简单，而且对开发者来说要求比较低，比较合适小白者，但是遇到有些问题，比如没有这种变量、函数等等，的确还不如less的扩展性，需要写大量的代码，但是看眼中的确没有逻辑的代码，CSS冗余度是比较高的。不方便维护，不利于复用，而且没有计算的能力。
+</code></pre>
+<p>   如果对css有基础的话，less很容易上手的。因为css和less区别不大的，反正可以通过编译生成浏览器能识别的css文件。</p>
+<h3 id="less使用"><a href="#less使用" class="headerlink" title="less使用"></a>less使用</h3><p><strong>可以进行嵌套</strong></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.contain</span>&#123;</span><br><span class="line">  <span class="selector-class">.row</span>&#123;</span><br><span class="line">    <span class="selector-class">.com</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>生成变量</strong><br>@变量名:变量值;<br>@color:#fff+#111</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@nice-blue:</span> <span class="number">#5B83AD</span>;</span><br><span class="line"><span class="variable">@light-blue:</span> <span class="variable">@nice-blue</span> + <span class="number">#111</span>;</span><br><span class="line"><span class="selector-tag">li</span>&#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">22%</span>;</span><br><span class="line">    <span class="attribute">line-height</span>:<span class="number">36px</span>;</span><br><span class="line">        <span class="selector-tag">a</span>&#123;</span><br><span class="line">            <span class="attribute">text-decoration</span>: none;</span><br><span class="line">            <span class="attribute">color</span>:<span class="variable">@nice-blue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span>&#123; <span class="attribute">color</span>:<span class="variable">@light-blue</span>; &#125;</span><br><span class="line">            <span class="comment">// &amp;添加这个代表在a元素上架了hover</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>转换后的css</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">li</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#5B83AD</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">li</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#6c94be</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="less运算"><a href="#less运算" class="headerlink" title="less运算"></a>less运算</h3><ul>
+<li>乘号（*）和除号（&#x2F;）的写法</li>
+<li>运算符中间左右有个空格隔开1px + 5</li>
+<li>对于两个不同单位的值进行运算，运算结果的值取第一个值的单位</li>
+<li>如果两个值只有一个值有单位，则运算结果就取该单位<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">width</span>:<span class="number">82rem</span>/<span class="number">15px</span> <span class="comment">// 单位为rem</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/11/20/less/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-rem布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -248,6 +326,22 @@
 <li>当屏幕越大，让html标签的font-size变大即可</li>
 <li>当屏幕越小，让html标签的font-size变小即可</li>
 </ul>
+<h3 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h3><ol>
+<li>使用 @media 查询，你可以针对不同的媒体类型定义不同的样式。<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//语法</span></span><br><span class="line">   &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">       @<span class="selector-tag">media</span> <span class="selector-tag">mediatype</span> <span class="selector-tag">and</span>|<span class="selector-tag">not</span>|<span class="selector-tag">only</span> (media feature) &#123;</span><br><span class="line">           <span class="selector-tag">CSS-Code</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>mediatype：媒体类型，包含（all，print，screen，speech）<br>1.all–所有设备<br>2.print–打印机和打印预览<br>3.screen–电脑屏幕，平板电脑，智能手机等<br>4.屏幕阅读器等发声设备<br>广泛使用的是all和screen<br><strong>@media 可以针对不同的屏幕尺寸设置不同的样式，特别是如果你需要设置设计响应式的页面，@media 是非常有用的。</strong></li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="comment">// 层叠关系覆盖</span></span><br><span class="line">	<span class="comment">//页面宽度小于等于300px时，背景变蓝色。</span></span><br><span class="line">    @<span class="selector-tag">media</span> <span class="selector-tag">screen</span> <span class="selector-tag">and</span> (<span class="attribute">max-width</span>: <span class="number">300px</span>) &#123;</span><br><span class="line">        <span class="selector-tag">body</span> &#123;</span><br><span class="line">            <span class="attribute">background-color</span>: blue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//页面宽度大于等于500px时，背景变红色。</span></span><br><span class="line">    <span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">500px</span>) &#123;</span><br><span class="line">        <span class="selector-tag">body</span> &#123;</span><br><span class="line">            <span class="attribute">background-color</span>: red;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>使用方法</p>
+</li>
+<li><p>引入css文件</p>
+  <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//通过mdeia指定媒体类型来实现区别引入css文件</span></span><br><span class="line">&lt;<span class="selector-tag">link</span> <span class="selector-tag">rel</span>=&quot;<span class="selector-tag">stylesheet</span>&quot; <span class="selector-tag">href</span>=&quot;./<span class="selector-tag">css</span>/<span class="selector-tag">index</span><span class="selector-class">.css</span>&quot; <span class="selector-tag">media</span>=&quot;<span class="selector-tag">screen</span>&quot;&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过mdeia指定媒体类型及条件来区别引入css文件</span></span><br><span class="line">&lt;<span class="selector-tag">link</span> <span class="selector-tag">rel</span>=&quot;<span class="selector-tag">stylesheet</span>&quot; <span class="selector-tag">href</span>=&quot;./<span class="selector-tag">css</span>/<span class="selector-tag">index</span><span class="selector-class">.css</span>&quot; <span class="selector-tag">media</span>=&quot;<span class="selector-tag">screen</span> <span class="selector-tag">and</span> (<span class="attribute">min-width</span>:<span class="number">300px</span>)&quot;&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>style内联样式media指定媒体类型</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过mdeia指定媒体类型来实现区别当前style是否生效</span></span><br><span class="line">   &lt;<span class="selector-tag">style</span> <span class="selector-tag">media</span>=&quot;<span class="selector-tag">screen</span>&quot;&gt;</span><br><span class="line">       <span class="selector-tag">body</span>&#123;</span><br><span class="line">           <span class="attribute">background-color</span>: antiquewhite;</span><br><span class="line">       &#125;</span><br><span class="line">   &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line">   </span><br><span class="line">  <span class="comment">//通过mdeia指定媒体类型及条件来实现区别当前style是否生效</span></span><br><span class="line">   &lt;<span class="selector-tag">style</span> <span class="selector-tag">media</span>=&quot;<span class="selector-tag">screen</span> <span class="selector-tag">and</span> (<span class="attribute">max-width</span>: <span class="number">300px</span>)&quot;&gt;</span><br><span class="line">       <span class="selector-tag">body</span>&#123;</span><br><span class="line">           <span class="attribute">background-color</span>: antiquewhite;</span><br><span class="line">       &#125;</span><br><span class="line">   &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>style内通过@media实现</p>
+  <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">//指定媒体类型下的&#123;&#125;内样式生效</span></span><br><span class="line">      &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">       @<span class="selector-tag">media</span> <span class="selector-tag">screen</span> &#123;</span><br><span class="line">           <span class="selector-tag">body</span>&#123;</span><br><span class="line">               <span class="attribute">background-color</span>: antiquewhite;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">      &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line">      </span><br><span class="line"><span class="comment">//只在IE8下生效</span></span><br><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">	@<span class="selector-tag">media</span> \<span class="number">0s</span><span class="selector-tag">creen</span> &#123;<span class="selector-tag">body</span> &#123; <span class="attribute">background</span>: red; &#125;&#125;</span><br><span class="line">&lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
 
@@ -1831,70 +1925,6 @@ changeOrigin设置为true时，服务器收到的请求头中的host为：localh
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/05/%E5%88%9D%E8%AF%86XHR/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-利用ajax提交表单数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/">利用ajax提交表单数据</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/" class="archive-article-date">
-  	<time datetime="2022-07-04T17:48:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="创建表单"><a href="#创建表单" class="headerlink" title="创建表单"></a>创建表单</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">&quot;/login&quot;</span> id=<span class="string">&quot;f1&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;user_name&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="监听表单元素拿到表单的值"><a href="#监听表单元素拿到表单的值" class="headerlink" title="监听表单元素拿到表单的值"></a>监听表单元素拿到表单的值</h3><h5 id="1-其中e-preventDefault-为阻止表单默认提交行为"><a href="#1-其中e-preventDefault-为阻止表单默认提交行为" class="headerlink" title="1.其中e.preventDefault()为阻止表单默认提交行为"></a>1.其中e.preventDefault()为阻止表单默认提交行为</h5><h5 id="2-‘-f1’-serialize-获取表单元素"><a href="#2-‘-f1’-serialize-获取表单元素" class="headerlink" title="2.$(‘#f1’).serialize()获取表单元素"></a>2.$(‘#f1’).serialize()获取表单元素</h5><h5 id="3-使用serialize-函数时必须给表单加name的值，否则无法提取表单元素"><a href="#3-使用serialize-函数时必须给表单加name的值，否则无法提取表单元素" class="headerlink" title="3.使用serialize()函数时必须给表单加name的值，否则无法提取表单元素"></a>3.使用serialize()函数时必须给表单加name的值，否则无法提取表单元素</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#f1&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;submit&#x27;</span>, <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>()</span><br><span class="line">    <span class="keyword">var</span> data = $(<span class="string">&#x27;#f1&#x27;</span>).<span class="title function_">serialize</span>()</span><br><span class="line">  $.<span class="title function_">post</span>(<span class="string">&quot;接口&quot;</span>,data,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(res.<span class="property">status</span>!==<span class="number">201</span>)&#123;&#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/05/%E5%88%A9%E7%94%A8ajax%E6%8F%90%E4%BA%A4%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE/">展开全文 >></a>
         </p>
       
 
