@@ -342,6 +342,15 @@
 <li><p>style内通过@media实现</p>
   <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">//指定媒体类型下的&#123;&#125;内样式生效</span></span><br><span class="line">      &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">       @<span class="selector-tag">media</span> <span class="selector-tag">screen</span> &#123;</span><br><span class="line">           <span class="selector-tag">body</span>&#123;</span><br><span class="line">               <span class="attribute">background-color</span>: antiquewhite;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">      &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line">      </span><br><span class="line"><span class="comment">//只在IE8下生效</span></span><br><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">	@<span class="selector-tag">media</span> \<span class="number">0s</span><span class="selector-tag">creen</span> &#123;<span class="selector-tag">body</span> &#123; <span class="attribute">background</span>: red; &#125;&#125;</span><br><span class="line">&lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
+<h3 id="rem适配方案"><a href="#rem适配方案" class="headerlink" title="rem适配方案"></a>rem适配方案</h3><ol>
+<li><p>让⼀些不能等⽐⾃适应的元素，达到当设备尺⼨发⽣改变的时候，等⽐例适配当 前设备。</p>
+</li>
+<li><p>使⽤媒体查询根据不同设备按⽐例设置html的字体⼤⼩，然后⻚⾯元素使⽤rem 做尺⼨单位，当html字体⼤⼩变化元素尺⼨也会发⽣变化，从⽽达到等⽐缩放的适 配。</p>
+</li>
+<li><p>公式：页面元素的rem值&#x3D;页面元素值（px）&#x2F;（屏幕宽度&#x2F;划分的份数）<br>  <strong>屏幕宽度&#x2F;划分的份数就是htmlfont-size大小</strong></p>
+</li>
+</ol>
+<h3 id="cssrem"><a href="#cssrem" class="headerlink" title="cssrem"></a>cssrem</h3><p>可以自动从px转换为rem<br><strong>具体步骤</strong><br>设置里面找cssroot 将cssrem.rootFontSize修改为当前所需要的font-size</p>
 
       
 
