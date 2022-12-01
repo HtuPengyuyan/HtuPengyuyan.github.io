@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | HtuPengyuyan的博客</title>
+  <title>ESM与CommonJS模块化 | HtuPengyuyan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HtuPengyuyan的博客">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="前端模块化（CMJ与ESM）1.为什么要模块化 把具有不同功能的板块封装为不同的模块，比如把涉及到网络请求的函数全都写在一个network.js文件里，把一些工具类的函数写在tool.js文件里，框架里的每一个组件都占据一个.vue文件,避免所有代码都写到一起，难以管理，同时还可以提高代码的复用率 通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数和类。  2.模块化规范目前流行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESM与CommonJS模块化">
+<meta property="og:url" content="http://example.com/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/index.html">
 <meta property="og:site_name" content="HtuPengyuyan的博客">
-<meta property="og:description" content="个人站">
+<meta property="og:description" content="前端模块化（CMJ与ESM）1.为什么要模块化 把具有不同功能的板块封装为不同的模块，比如把涉及到网络请求的函数全都写在一个network.js文件里，把一些工具类的函数写在tool.js文件里，框架里的每一个组件都占据一个.vue文件,避免所有代码都写到一起，难以管理，同时还可以提高代码的复用率 通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数和类。  2.模块化规范目前流行">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-01T08:46:41.000Z">
+<meta property="article:modified_time" content="2022-12-01T09:19:20.600Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
@@ -216,289 +218,255 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-ESM与CommonJS模块化" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      ESM与CommonJS模块化
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/" class="archive-article-date">
+
+        
+        <a href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/" class="archive-article-date">
   	<time datetime="2022-12-01T08:46:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/">ESM与CommonJS模块化</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前端模块化（CMJ与ESM）"><a href="#前端模块化（CMJ与ESM）" class="headerlink" title="前端模块化（CMJ与ESM）"></a>前端模块化（CMJ与ESM）</h1><h2 id="1-为什么要模块化"><a href="#1-为什么要模块化" class="headerlink" title="1.为什么要模块化"></a>1.为什么要模块化</h2><ol>
+<li>把具有不同功能的板块封装为不同的模块，比如把涉及到网络请求的函数全都写在一个network.js文件里，把一些工具类的函数写在tool.js文件里，框架里的每一个组件都占据一个.vue文件,避免所有代码都写到一起，难以管理，同时还可以提高代码的复用率</li>
+<li>通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数和类。</li>
+</ol>
+<h2 id="2-模块化规范"><a href="#2-模块化规范" class="headerlink" title="2.模块化规范"></a>2.模块化规范</h2><p>目前流行的js模块化规范有CommonJS、AMD、CMD以及<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=ES6&spm=1001.2101.3001.7020">ES6</a>的模块系统</p>
+<h3 id="一、CommonJS"><a href="#一、CommonJS" class="headerlink" title="一、CommonJS"></a>一、CommonJS</h3><p>NodeJS是CommonJS规范的主要实践者，它有四个重要的<strong>环境变量</strong>为模块化的实现提供支持：<code>module</code>、<code>exports</code>、<code>require</code>、<code>global</code>。实际使用时，用**<code>module.exports</code>定义当前模块对外输出的接口<strong>（不推荐直接用<code>exports</code>），用</strong><code>require</code>加载模块**。</p>
+<p>1.NodeJS采用了CommonJS规范实现了模块系统</p>
+<p>2.CommonJS规范</p>
+<ul>
+<li><p>CommonJS规范规定了如何定义一个模块, 如何暴露(导出)模块中的变量函数, 以及如何使用定义好的模块</p>
+</li>
+<li><p>在CommonJS规范中一个文件就是一个模块</p>
+</li>
+<li><p>在CommonJS规范中每个文件中的变量函数都是私有的，对其他文件不可见的</p>
+</li>
+<li><p>在CommonJS规范中每个文件中的变量函数必须通过exports暴露(导出)之后其它文件才可以使用</p>
+</li>
+<li><p>在CommonJS规范中想要使用其它文件暴露的变量函数必须通过require()导入模块才可以使用</p>
+</li>
+</ul>
+<h3 id="1-Node模块中暴露数据的几种方法"><a href="#1-Node模块中暴露数据的几种方法" class="headerlink" title="1.Node模块中暴露数据的几种方法"></a>1.Node模块中暴露数据的几种方法</h3><p>在学习Node中学习过现在大概复习了解一下</p>
+<ul>
+<li><p>分为<code>exports xxx =</code>和<code>module.exports.xxx</code></p>
+</li>
+<li><p><code>module.exports</code>可以不通过对象的属性赋值，可以直接赋值</p>
+</li>
+</ul>
+<h3 id="2-require的引入规则"><a href="#2-require的引入规则" class="headerlink" title="2.require的引入规则"></a>2.require的引入规则</h3><ol>
+<li>require导入模块时可以不添加导入模块的类型（模块的后缀名可以不写）<br>如果没有指定导入模块的类型, 那么会按照查找顺序依次查找.js .json .node文件<br>无论是三种类型中的哪一种, 导入之后都会转换成JS对象返回给我们<br>导入自定义模块时必须指定路径</li>
+<li>require除了可以导入”自定义模块(文件模块)“、还可以导入”系统模块(核心模块–nodejs自带的)”、“第三方模块（别人写的，可以直接使用）”<br>导入”自定义模块”模块时前面必须加上路径（就是前面的.&#x2F;之类的）<br>导入”系统模块”和”第三方模块”是不用添加路径</li>
+<li>查找<br>如果是”系统模块”直接到环境变量配置的路径中查找<br>如果是”第三方模块”会按照module.paths数组中的路径依次查找</li>
+</ol>
+<h2 id="二、ES6Module（ESM）"><a href="#二、ES6Module（ESM）" class="headerlink" title="二、ES6Module（ESM）"></a>二、ES6Module（ESM）</h2><ol>
+<li><p>ES6 在<strong>语言标准的层面上，实现了模块功能</strong>，而且实现得相当简单，旨在成为浏览器和服务器通用的模块解决方案。其模块功能主要由两个命令构成：<code>export</code>和<code>import</code>。<code>export</code>命令用于规定模块的对外接口，<code>import</code>命令用于输入其他模块提供的功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 定义模块 math.js **/</span></span><br><span class="line"><span class="keyword">var</span> basicNum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> add = <span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> &#123; basicNum, add &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/** 引用模块 **/</span></span><br><span class="line"><span class="keyword">import</span> &#123; basicNum, add &#125; <span class="keyword">from</span> <span class="string">&#x27;./math&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">ele</span>) &#123;</span><br><span class="line">    ele.<span class="property">textContent</span> = <span class="title function_">add</span>(<span class="number">99</span> + basicNum);</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
 
+</li>
+<li><p>如上例所示，使用<code>import</code>命令的时候，用户需要知道所要加载的变量名或函数名。其实ES6还提供了****<code>export default</code>命令，为模块指定默认输出，对应的<code>import</code>语句不需要使用大括号****。这也更趋近于AMD的引用写法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** export default **/</span></span><br><span class="line"><span class="comment">//定义输出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; basicNum, add &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//引入</span></span><br><span class="line"><span class="keyword">import</span> math <span class="keyword">from</span> <span class="string">&#x27;./math&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">ele</span>) &#123;</span><br><span class="line">    ele.<span class="property">textContent</span> = math.<span class="title function_">add</span>(<span class="number">99</span> + math.<span class="property">basicNum</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ES6的模块不是对象，<code>import</code>命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。也正因为这个，使得静态分析成为可能。</p>
+</li>
+</ol>
+<h4 id="关于一些导入的用法"><a href="#关于一些导入的用法" class="headerlink" title="关于一些导入的用法"></a>关于一些导入的用法</h4><p>原生的ESModules import导入，后面不能省略，后缀名、不能省略index.js，必须以“.&#x2F;“或者”&#x2F;“开始，相对和绝对路径，也可以直接使用连接完成的url。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span> <span class="comment">//不能省略后缀名</span></span><br><span class="line"><span class="keyword">import</span> &#123; lowercase &#125; <span class="keyword">from</span> <span class="string">&#x27;./utils/index.js&#x27;</span> <span class="comment">//不能省略index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;/04-import/module.js&#x27;</span> <span class="comment">//不能省略“./“（不然会被当成第三方模块）或者”/“（根目录开始）</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;http://localhost:3000/04-import/module.js&#x27;</span> <span class="comment">//可以直接使用完整的url</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// --------------</span></span><br><span class="line"><span class="keyword">import</span> &#123;&#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="comment">// 只加载模块导入模块，不导入具体变量、成员</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ---------------</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> mod <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mod)</span><br><span class="line"><span class="comment">// 导入全部变量，并且作为 mod 内的属性</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ---------------</span></span><br><span class="line"><span class="keyword">var</span> modulePath = <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="title function_">import</span>(modulePath).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params"><span class="variable language_">module</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">module</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 当时导入路径为变量时，可通过全局函数 import 导入，</span></span><br><span class="line"><span class="comment">// 返回一个异步函数 promise，在回调函数中输出导入的值</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ----------------</span></span><br><span class="line"><span class="keyword">import</span> &#123; name, age, <span class="keyword">default</span> <span class="keyword">as</span> title &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> title, &#123; name, age &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="comment">// title为导入的默认值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name, age, title)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同时导入 其他值和默认值时，可以这样写</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="在浏览器上使用原生的ESM"><a href="#在浏览器上使用原生的ESM" class="headerlink" title="在浏览器上使用原生的ESM"></a>在浏览器上使用原生的ESM</h4><p>通过 <code>script[type=module]</code>，可直接在浏览器中使用原生 <code>ESM</code>。这也使得前端不打包 (<code>Bundless</code>) 成为可能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;module&quot;</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">&quot;https://cdn.skypack.dev/lodash&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ImportMap"><a href="#ImportMap" class="headerlink" title="ImportMap"></a>ImportMap</h3><p>但 <code>Http Import</code> 每次都需要输入完全的 URL，相对以前的裸导入 (<code>bare import specifiers</code>)，很不太方便，如下例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">&quot;lodash&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在 ESM 中，可通过 <code>importmap</code> 使得裸导入可正常工作:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;importmap&quot;</span>&gt;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;imports&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;lodash&quot;</span>: <span class="string">&quot;https://cdn.skypack.dev/lodash&quot;</span>,</span><br><span class="line">      <span class="string">&quot;ms&quot;</span>: <span class="string">&quot;https://cdn.skypack.dev/ms&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此时可与以前同样的方式进行模块导入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">&#x27;lodash&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">import</span>(<span class="string">&quot;lodash&quot;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> ...)</span><br></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;importmap&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="string">&quot;imports&quot;</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="string">&quot;lodash&quot;</span>: <span class="string">&quot;https://cdn.skypack.dev/lodash&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="string">&quot;ms&quot;</span>: <span class="string">&quot;https://cdn.skypack.dev/ms&quot;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">&#x27;lodash&#x27;</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> r = lodash.<span class="title function_">get</span>(&#123; <span class="attr">a</span>: <span class="number">3</span> &#125;, <span class="string">&#x27;a&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(r)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/29/webpack%E5%BA%94%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2022-11-29T08:49:56.474Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/28/lodash/" class="archive-article-date">
-  	<time datetime="2022-11-28T15:38:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/28/lodash/">lodash</a>
-    </h1>
+  
+    <a href="/2022/11/29/webpack%E5%BA%94%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/20/less/" class="archive-article-date">
-  	<time datetime="2022-11-20T08:55:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/20/less/">less</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/20/rem%E5%B8%83%E5%B1%80/" class="archive-article-date">
-  	<time datetime="2022-11-20T04:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/20/rem%E5%B8%83%E5%B1%80/">rem布局</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/19/Echarts/" class="archive-article-date">
-  	<time datetime="2022-11-19T07:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/19/Echarts/">Echarts</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2022-11-06T12:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/">Node.js基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/10/19/ES6%E8%AF%AD%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2022-10-19T03:01:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/19/ES6%E8%AF%AD%E6%B3%95/">ES6语法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/10/09/vue%E5%AE%9E%E6%88%98shop/" class="archive-article-date">
-  	<time datetime="2022-10-09T11:36:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/09/vue%E5%AE%9E%E6%88%98shop/">vue实战shop</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/10/06/vue-%E5%B0%8F%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2022-10-06T07:50:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/06/vue-%E5%B0%8F%E7%9F%A5%E8%AF%86/">vue 小知识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -526,8 +494,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-			isArchive: true,
+		isPost: true,
+			isArchive: false,
 				isTag: false,
 					isCategory: false,
 						open_in_new: false,

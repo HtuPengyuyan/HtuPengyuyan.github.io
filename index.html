@@ -218,6 +218,190 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ESM与CommonJS模块化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/">ESM与CommonJS模块化</a>
+    </h1>
+  
+
+        
+        <a href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2022-12-01T08:46:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前端模块化（CMJ与ESM）"><a href="#前端模块化（CMJ与ESM）" class="headerlink" title="前端模块化（CMJ与ESM）"></a>前端模块化（CMJ与ESM）</h1><h2 id="1-为什么要模块化"><a href="#1-为什么要模块化" class="headerlink" title="1.为什么要模块化"></a>1.为什么要模块化</h2><ol>
+<li>把具有不同功能的板块封装为不同的模块，比如把涉及到网络请求的函数全都写在一个network.js文件里，把一些工具类的函数写在tool.js文件里，框架里的每一个组件都占据一个.vue文件,避免所有代码都写到一起，难以管理，同时还可以提高代码的复用率</li>
+<li>通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数和类。</li>
+</ol>
+<h2 id="2-模块化规范"><a href="#2-模块化规范" class="headerlink" title="2.模块化规范"></a>2.模块化规范</h2><p>目前流行的js模块化规范有CommonJS、AMD、CMD以及<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=ES6&spm=1001.2101.3001.7020">ES6</a>的模块系统</p>
+<h3 id="一、CommonJS"><a href="#一、CommonJS" class="headerlink" title="一、CommonJS"></a>一、CommonJS</h3><p>NodeJS是CommonJS规范的主要实践者，它有四个重要的<strong>环境变量</strong>为模块化的实现提供支持：<code>module</code>、<code>exports</code>、<code>require</code>、<code>global</code>。实际使用时，用**<code>module.exports</code>定义当前模块对外输出的接口<strong>（不推荐直接用<code>exports</code>），用</strong><code>require</code>加载模块**。</p>
+<p>1.NodeJS采用了CommonJS规范实现了模块系统</p>
+<p>2.CommonJS规范</p>
+<ul>
+<li><p>CommonJS规范规定了如何定义一个模块, 如何暴露(导出)模块中的变量函数, 以及如何使用定义好的模块</p>
+</li>
+<li><p>在CommonJS规范中一个文件就是一个模块</p>
+</li>
+<li><p>在CommonJS规范中每个文件中的变量函数都是私有的，对其他文件不可见的</p>
+</li>
+<li><p>在CommonJS规范中每个文件中的变量函数必须通过exports暴露(导出)之后其它文件才可以使用</p>
+</li>
+<li><p>在CommonJS规范中想要使用其它文件暴露的变量函数必须通过require()导入模块才可以使用</p>
+</li>
+</ul>
+<h3 id="1-Node模块中暴露数据的几种方法"><a href="#1-Node模块中暴露数据的几种方法" class="headerlink" title="1.Node模块中暴露数据的几种方法"></a>1.Node模块中暴露数据的几种方法</h3><p>在学习Node中学习过现在大概复习了解一下</p>
+<ul>
+<li><p>分为<code>exports xxx =</code>和<code>module.exports.xxx</code></p>
+</li>
+<li><p><code>module.exports</code>可以不通过对象的属性赋值，可以直接赋值</p>
+</li>
+</ul>
+<h3 id="2-require的引入规则"><a href="#2-require的引入规则" class="headerlink" title="2.require的引入规则"></a>2.require的引入规则</h3><ol>
+<li>require导入模块时可以不添加导入模块的类型（模块的后缀名可以不写）<br>如果没有指定导入模块的类型, 那么会按照查找顺序依次查找.js .json .node文件<br>无论是三种类型中的哪一种, 导入之后都会转换成JS对象返回给我们<br>导入自定义模块时必须指定路径</li>
+<li>require除了可以导入”自定义模块(文件模块)“、还可以导入”系统模块(核心模块–nodejs自带的)”、“第三方模块（别人写的，可以直接使用）”<br>导入”自定义模块”模块时前面必须加上路径（就是前面的.&#x2F;之类的）<br>导入”系统模块”和”第三方模块”是不用添加路径</li>
+<li>查找<br>如果是”系统模块”直接到环境变量配置的路径中查找<br>如果是”第三方模块”会按照module.paths数组中的路径依次查找</li>
+</ol>
+<h2 id="二、ES6Module（ESM）"><a href="#二、ES6Module（ESM）" class="headerlink" title="二、ES6Module（ESM）"></a>二、ES6Module（ESM）</h2><ol>
+<li><p>ES6 在<strong>语言标准的层面上，实现了模块功能</strong>，而且实现得相当简单，旨在成为浏览器和服务器通用的模块解决方案。其模块功能主要由两个命令构成：<code>export</code>和<code>import</code>。<code>export</code>命令用于规定模块的对外接口，<code>import</code>命令用于输入其他模块提供的功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 定义模块 math.js **/</span></span><br><span class="line"><span class="keyword">var</span> basicNum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> add = <span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> &#123; basicNum, add &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/** 引用模块 **/</span></span><br><span class="line"><span class="keyword">import</span> &#123; basicNum, add &#125; <span class="keyword">from</span> <span class="string">&#x27;./math&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">ele</span>) &#123;</span><br><span class="line">    ele.<span class="property">textContent</span> = <span class="title function_">add</span>(<span class="number">99</span> + basicNum);</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>如上例所示，使用<code>import</code>命令的时候，用户需要知道所要加载的变量名或函数名。其实ES6还提供了****<code>export default</code>命令，为模块指定默认输出，对应的<code>import</code>语句不需要使用大括号****。这也更趋近于AMD的引用写法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** export default **/</span></span><br><span class="line"><span class="comment">//定义输出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; basicNum, add &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//引入</span></span><br><span class="line"><span class="keyword">import</span> math <span class="keyword">from</span> <span class="string">&#x27;./math&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">ele</span>) &#123;</span><br><span class="line">    ele.<span class="property">textContent</span> = math.<span class="title function_">add</span>(<span class="number">99</span> + math.<span class="property">basicNum</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ES6的模块不是对象，<code>import</code>命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。也正因为这个，使得静态分析成为可能。</p>
+</li>
+</ol>
+<h4 id="关于一些导入的用法"><a href="#关于一些导入的用法" class="headerlink" title="关于一些导入的用法"></a>关于一些导入的用法</h4><p>原生的ESModules import导入，后面不能省略，后缀名、不能省略index.js，必须以“.&#x2F;“或者”&#x2F;“开始，相对和绝对路径，也可以直接使用连接完成的url。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span> <span class="comment">//不能省略后缀名</span></span><br><span class="line"><span class="keyword">import</span> &#123; lowercase &#125; <span class="keyword">from</span> <span class="string">&#x27;./utils/index.js&#x27;</span> <span class="comment">//不能省略index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;/04-import/module.js&#x27;</span> <span class="comment">//不能省略“./“（不然会被当成第三方模块）或者”/“（根目录开始）</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;http://localhost:3000/04-import/module.js&#x27;</span> <span class="comment">//可以直接使用完整的url</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// --------------</span></span><br><span class="line"><span class="keyword">import</span> &#123;&#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="comment">// 只加载模块导入模块，不导入具体变量、成员</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ---------------</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> mod <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mod)</span><br><span class="line"><span class="comment">// 导入全部变量，并且作为 mod 内的属性</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ---------------</span></span><br><span class="line"><span class="keyword">var</span> modulePath = <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="title function_">import</span>(modulePath).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params"><span class="variable language_">module</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">module</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 当时导入路径为变量时，可通过全局函数 import 导入，</span></span><br><span class="line"><span class="comment">// 返回一个异步函数 promise，在回调函数中输出导入的值</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ----------------</span></span><br><span class="line"><span class="keyword">import</span> &#123; name, age, <span class="keyword">default</span> <span class="keyword">as</span> title &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> title, &#123; name, age &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="comment">// title为导入的默认值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name, age, title)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同时导入 其他值和默认值时，可以这样写</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="在浏览器上使用原生的ESM"><a href="#在浏览器上使用原生的ESM" class="headerlink" title="在浏览器上使用原生的ESM"></a>在浏览器上使用原生的ESM</h4><p>通过 <code>script[type=module]</code>，可直接在浏览器中使用原生 <code>ESM</code>。这也使得前端不打包 (<code>Bundless</code>) 成为可能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;module&quot;</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">&quot;https://cdn.skypack.dev/lodash&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ImportMap"><a href="#ImportMap" class="headerlink" title="ImportMap"></a>ImportMap</h3><p>但 <code>Http Import</code> 每次都需要输入完全的 URL，相对以前的裸导入 (<code>bare import specifiers</code>)，很不太方便，如下例:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">&quot;lodash&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在 ESM 中，可通过 <code>importmap</code> 使得裸导入可正常工作:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;importmap&quot;</span>&gt;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;imports&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;lodash&quot;</span>: <span class="string">&quot;https://cdn.skypack.dev/lodash&quot;</span>,</span><br><span class="line">      <span class="string">&quot;ms&quot;</span>: <span class="string">&quot;https://cdn.skypack.dev/ms&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此时可与以前同样的方式进行模块导入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">&#x27;lodash&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">import</span>(<span class="string">&quot;lodash&quot;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">_</span> =&gt;</span> ...)</span><br></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;importmap&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="string">&quot;imports&quot;</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="string">&quot;lodash&quot;</span>: <span class="string">&quot;https://cdn.skypack.dev/lodash&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="string">&quot;ms&quot;</span>: <span class="string">&quot;https://cdn.skypack.dev/ms&quot;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;module&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">&#x27;lodash&#x27;</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">const</span> r = lodash.<span class="title function_">get</span>(&#123; <span class="attr">a</span>: <span class="number">3</span> &#125;, <span class="string">&#x27;a&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">console</span>.<span class="title function_">log</span>(r)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-webpack应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1649,182 +1833,6 @@ b. 省略花括号，当代码体只有一条语句的时候，此时return也�
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/10/06/vue-%E5%B0%8F%E7%9F%A5%E8%AF%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据库系统概论" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/">数据库系统概论</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" class="archive-article-date">
-  	<time datetime="2022-09-22T01:47:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="用MySQL数据库创建表格"><a href="#用MySQL数据库创建表格" class="headerlink" title="用MySQL数据库创建表格"></a>用MySQL数据库创建表格</h2><ol>
-<li>创建数据库<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE student</span><br></pre></td></tr></table></figure>
-删除数据库<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> database student</span><br></pre></td></tr></table></figure>
-创建完数据库需要刷新才能出现数据库</li>
-<li>创建表格</li>
-</ol>
-<h6 id="需要先确定列的类型"><a href="#需要先确定列的类型" class="headerlink" title="需要先确定列的类型"></a>需要先确定列的类型</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE student;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> myTable(</span><br><span class="line">    sno <span class="type">CHAR</span>(<span class="number">9</span>) <span class="keyword">PRIMARY</span> KEY(设置主键，主键是唯一的),</span><br><span class="line">    sa <span class="type">SMALLINT</span>,</span><br><span class="line">    ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>数值类型<br>TINYINT  微整型，占1个字节  范围-128<del>127<br>SMALLINT  小整型，占2个字节  范围-32768</del>32767<br>INT  整型，占4个字节  范围 -2147483648~2147483647<br>BIGINT  大整型，占8个字节<br>FLOAT  单精度浮点型，占4个字节，范围3.4e38，范围比INT大的多，可能产生计算误差。<br>DOUBLE  双精度浮点型，占8个字节，范围比BIGINT大的多<br>DECIMAL(M,D)  定点小数，不会产生计算误差，M代表总的有效位数，D代表小数点后的有效位数<br>BOOL  布尔型，只有两个结果TRUE&#x2F;1、FALSE&#x2F;0，TRUE和FALSE不能添加引号；真正存储数据的时候，会使用TINYINT。</p>
-</li>
-<li><p>日期时间类型<br>DATE  日期型   ‘2018-12-31’<br>TIME  时间型   ‘14:22:30’<br>DATETIME   日期时间型   ‘2018-12-31  14:22:30’</p>
-</li>
-<li><p>字符串类型——必须添加引号<br>VARCHAR(M)  变长字符串，不会产生空间浪费，操作速度相对较慢，M最大值是65535<br>CHAR(M)   定长字符串，可能产生空间浪费，操作速度较快，M最大值是255；用于存储手机号码，身份证号等固定长度的字符。<br>TEXT(M)  大型变长字符串，最多存2G</p>
-</li>
-<li><p>填值</p>
-</li>
-<li><p>增加</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student <span class="keyword">Values</span>(<span class="string">&#x27;张三&#x27;</span>,<span class="number">2</span>,...),</span><br></pre></td></tr></table></figure></li>
-<li><p>修改</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> sa<span class="operator">=</span><span class="number">18</span> <span class="keyword">where</span> sno<span class="operator">=</span><span class="string">&#x27;张三&#x27;</span> </span><br></pre></td></tr></table></figure></li>
-<li><p>删除</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> student <span class="keyword">where</span> sno<span class="operator">=</span><span class="string">&#x27;张三&#x27;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>查表</p>
-</li>
-</ol>
-<h5 id="查看数据库所有的表"><a href="#查看数据库所有的表" class="headerlink" title="查看数据库所有的表"></a>查看数据库所有的表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> TABLES;</span><br></pre></td></tr></table></figure>
-<h5 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">添加字段</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> student <span class="keyword">add</span> ssex <span class="type">VARCHAR</span>;</span><br><span class="line">重命名</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> student change ssex sDate <span class="type">VARCHAR</span>;</span><br><span class="line">删除字段</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">TABLE</span> student <span class="keyword">drop</span> birthday;</span><br></pre></td></tr></table></figure>
-<h5 id="查询列"><a href="#查询列" class="headerlink" title="查询列"></a>查询列</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查询所有列</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student</span><br><span class="line">查询指定列</span><br><span class="line"><span class="keyword">select</span> sno <span class="keyword">from</span> student</span><br></pre></td></tr></table></figure>
-<h5 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">全列插入</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student <span class="keyword">Values</span>(<span class="string">&#x27;李四&#x27;</span>,<span class="number">1</span>,<span class="number">20</span>)</span><br><span class="line">部分列插入</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student (sno,ssex)<span class="keyword">Values</span>(<span class="string">&#x27;王五&#x27;</span>,<span class="string">&#x27;男&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="select一般形式"><a href="#select一般形式" class="headerlink" title="select一般形式"></a>select一般形式</h3><p>selcet 列名，*，运算，聚合函数<br>From 表|视图|派生表<br>where 条件</p>
-<ol>
-<li>比较运算符&lt;&gt; !&#x3D; &gt; &lt; &gt;&#x3D; &lt;&#x3D; &#x3D;</li>
-<li>范围 between and | not between and</li>
-<li>集合in  not in</li>
-<li>字符匹配（模糊查询）like ‘%_’%匹配次数不限 _只匹配一次</li>
-<li>多重条件（逻辑运算）and or not<br>group by[HAVING&lt;条件表达式&gt;]<br>order by[ASC|DESC]</li>
-</ol>
-<h5 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查询编号大于三的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> id<span class="operator">&gt;</span><span class="number">3</span></span><br><span class="line">查询姓名不是张三的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> name <span class="operator">!=</span><span class="string">&#x27;张三&#x27;</span></span><br></pre></td></tr></table></figure>
-<h5 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> <span class="keyword">or</span> <span class="keyword">not</span></span><br><span class="line">查询编号大于三的女同学</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> id<span class="operator">=</span><span class="number">3</span> <span class="keyword">and</span> gender<span class="operator">=</span><span class="number">0</span></span><br><span class="line">查询编号小于四或没被删除的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> id<span class="operator">&lt;</span><span class="number">4</span> <span class="keyword">or</span> is_delete</span><br></pre></td></tr></table></figure>
-<h5 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">in</span> 和 <span class="keyword">between</span> <span class="keyword">and</span></span><br><span class="line"><span class="keyword">in</span> 用在一个非连续的范围内</span><br><span class="line">查询编号为<span class="number">1</span>或<span class="number">3</span>或<span class="number">8</span>的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">where</span> id <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">3</span>,<span class="number">8</span>) </span><br><span class="line"><span class="keyword">between</span> <span class="keyword">and</span> 表示在一个连续的范围内</span><br><span class="line">查询编号<span class="number">3</span><span class="number">-8</span>的学生</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> id <span class="keyword">between</span> <span class="number">3</span> <span class="keyword">and</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
-<p><img src="/img/student%E8%A1%A8.png"><br><img src="/img/sc%E8%A1%A8.png"><br><img src="/img/course%E8%A1%A8.png"></p>
-<h5 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h5><p>连接查询：同时涉及两个以上的表的查询<br>连接条件或连接谓词：用来连接两个表的条件<br>注：连接条件中的各连接字段类型必须是可比的，但名字不必相同</p>
-<h5 id="等值与非等值连接查询"><a href="#等值与非等值连接查询" class="headerlink" title="等值与非等值连接查询"></a>等值与非等值连接查询</h5><p>等值连接：连接运算符为&#x3D;<br>查询每个学生及其选修课程情况</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> stu.<span class="operator">*</span>, SC.<span class="operator">*</span></span><br><span class="line">     <span class="keyword">FROM</span>     Student stu, SC</span><br><span class="line">     <span class="keyword">WHERE</span> stu.Sno <span class="operator">=</span> SC.Sno;</span><br></pre></td></tr></table></figure>
-<p>查询结果<br><img src="/img/%E7%AD%89%E5%80%BC%E6%9F%A5%E8%AF%A2.png"></p>
-<h5 id="嵌套循环法"><a href="#嵌套循环法" class="headerlink" title="嵌套循环法"></a>嵌套循环法</h5><p>首先在表1中找到第一个元组，然后从头开始扫描表2，逐一查找满足连接件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组。<br>表2全部查找完后，再找表1中第二个元组，然后再从头开始扫描表2，逐一查找满足连接条件的元组，找到后就将表1中的第二个元组与该元组拼接起来，形成结果表中一个元组。</p>
-<h5 id="排序合并法"><a href="#排序合并法" class="headerlink" title="排序合并法"></a>排序合并法</h5><p>常用于&#x3D;连接<br>首先按连接属性对表1和表2排序<br>对表1的第一个元组，从头开始扫描表2，顺序查找满足连接条件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组。当遇到表2中第一条大于表1连接字段值的元组时，对表2的查询不再继续</p>
-<h5 id="索引连接"><a href="#索引连接" class="headerlink" title="索引连接"></a>索引连接</h5><p>对表2按连接字段建立索引<br>对表1中的每个元组，依次根据其连接字段值查询表2的索引，从中找到满足条件的元组，找到后就将表1中的第一个元组与该元组拼接起来，形成结果表中一个元组</p>
-<h5 id="自身连接"><a href="#自身连接" class="headerlink" title="自身连接"></a>自身连接</h5><p>自身连接：一个表与其自己进行连接<br>注：1. 需要给表起别名用来区分<br>    2.由于所有属性名都是同名属性，因此必须用别名前缀<br>    3.要为单个表取两个别名，一个是first，另一个是second</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  FIRST.Cno, SECOND.Cpno</span><br><span class="line">        <span class="keyword">FROM</span>  Course  <span class="keyword">FIRST</span>, Course  <span class="keyword">SECOND</span></span><br><span class="line">        <span class="keyword">WHERE</span> FIRST.Cpno <span class="operator">=</span> SECOND.Cno;</span><br></pre></td></tr></table></figure>
-<p><img src="/img/%E8%87%AA%E8%BA%AB%E8%BF%9E%E6%8E%A5png"></p>
-<h5 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h5><ol>
-<li>普通连接操作只输出满足连接条件的元组</li>
-<li>外连接操作以指定表为连接主体，将主体表中不满足连接条件的元组一并输出</li>
-<li>左外连接<br>列出左边关系中所有的元组 </li>
-<li>右外连接<br>列出右边关系中所有的元组</li>
-</ol>
-<h5 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h5><p>多表连接：两个以上的表进行连接<br>查询每个学生的学号、姓名、选修的课程名及成绩</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Student.Sno,Sname,Cname,Grade</span><br><span class="line"><span class="keyword">From</span> Student,Sc,Course</span><br><span class="line"><span class="keyword">Where</span> Student.Sno<span class="operator">=</span>SC.Sno</span><br><span class="line"><span class="keyword">And</span> SC.Cno<span class="operator">=</span>Course.cno;</span><br></pre></td></tr></table></figure>
-<h5 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h5><p>一个SELECT-FROM-WHERE语句称为一个查询块<br>将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sname	                           <span class="comment">/*外层查询/父查询*/</span></span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sno <span class="keyword">IN</span></span><br><span class="line">                   ( <span class="keyword">SELECT</span> Sno        <span class="comment">/*内层查询/子查询*/</span></span><br><span class="line">                     <span class="keyword">FROM</span> SC</span><br><span class="line">                     <span class="keyword">WHERE</span> Cno<span class="operator">=</span> <span class="string">&#x27; 2 &#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>上层的查询块称为外层查询或父查询<br>下层查询块称为内层查询或子查询<br>注：</p>
-<ol>
-<li>SQL语言允许多层嵌套查询<br>即一个子查询中还可以嵌套其他子查询</li>
-<li>子查询的限制<br>不能使用ORDER BY</li>
-</ol>
-<h6 id="嵌套查询求解方法"><a href="#嵌套查询求解方法" class="headerlink" title="嵌套查询求解方法"></a>嵌套查询求解方法</h6><p>不相关子查询：</p>
-<ol>
-<li>子查询的查询条件不依赖于父查询</li>
-<li>由里向外 逐层处理。即每个子查询在上一级查询处理之前求解，子查询的结果用于建立其父查询的查找条件<br>相关子查询：子查询的查询条件依赖于父查询</li>
-<li>首先取外层查询中表的第一个元组，根据它与内层查询相关的属性值处理内层查询，若where返回值为真，则取此元组放入结果表中</li>
-<li>然后再取外层表的下一个元组</li>
-<li>重复这一过程，直至外层表全部检查完为止</li>
-</ol>
-<h6 id="带有IN谓词的子查询"><a href="#带有IN谓词的子查询" class="headerlink" title="带有IN谓词的子查询"></a>带有IN谓词的子查询</h6><p>查询与“刘晨”在同一个系学习的学生。（此查询要求可以分步来完成）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="operator">&lt;</span><span class="operator">!</span><span class="comment">-- 确定“刘晨”所在系名              --&gt;</span></span><br><span class="line">  <span class="keyword">SELECT</span>  Sdept  </span><br><span class="line">  <span class="keyword">FROM</span>     Student                            </span><br><span class="line">  <span class="keyword">WHERE</span>  Sname<span class="operator">=</span> <span class="string">&#x27; 刘晨 &#x27;</span>;</span><br><span class="line"><span class="operator">&lt;</span><span class="operator">!</span><span class="comment">-- 结果为： CS --&gt;</span></span><br></pre></td></tr></table></figure>
-<p>查找所有在CS系学习的学生。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>   Sno, Sname, Sdept     </span><br><span class="line">        <span class="keyword">FROM</span>      Student                 </span><br><span class="line">        <span class="keyword">WHERE</span>   Sdept<span class="operator">=</span> <span class="string">&#x27; CS &#x27;</span>; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="/img/IN%E8%B0%93%E8%AF%8D.png"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sno, Sname, Sdept</span><br><span class="line">   	<span class="keyword">FROM</span> Student</span><br><span class="line">  	<span class="keyword">WHERE</span> Sdept  <span class="keyword">IN</span>   <span class="comment">/*可以替换为=号*/</span></span><br><span class="line">                 (<span class="keyword">SELECT</span> Sdept</span><br><span class="line">                  <span class="keyword">FROM</span> Student</span><br><span class="line">                  <span class="keyword">WHERE</span> Sname<span class="operator">=</span> <span class="string">&#x27; 刘晨 &#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="带有比较运算符的子查询"><a href="#带有比较运算符的子查询" class="headerlink" title="带有比较运算符的子查询"></a>带有比较运算符的子查询</h5><p>当能确切知道内层查询返回单值时，可用比较运算符（&lt;,&gt;,&#x3D;,&gt;&#x3D;,&lt;&#x3D;,!&#x3D;,&lt;&gt;）<br>找出每个学生超过他选修课程平均成绩的课程号。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sno, C5no</span><br><span class="line">    <span class="keyword">FROM</span>    SC  x</span><br><span class="line"><span class="keyword">WHERE</span> Grade <span class="operator">&gt;=</span>(<span class="keyword">SELECT</span> AVG（Grade） </span><br><span class="line">                       <span class="keyword">FROM</span>  SC y</span><br><span class="line">                                <span class="keyword">WHERE</span> y.Sno<span class="operator">=</span>x.Sno);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>分为三步</p>
-<ol>
-<li>从外层查询中取出SC的一个元组x，将元组x的Sno值（201215121）传送给内层查询。</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(Grade)</span><br><span class="line">       	<span class="keyword">FROM</span> SC y</span><br><span class="line">       	<span class="keyword">WHERE</span> y.Sno<span class="operator">=</span><span class="string">&#x27;201215121‘;</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>执行内层查询，得到值88（近似值），用该值代替内层查询，得到外层查询：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sno,Cno</span><br><span class="line">     	 <span class="keyword">FROM</span>     SC x</span><br><span class="line">    	 <span class="keyword">WHERE</span>  Grade <span class="operator">&gt;=</span><span class="number">88</span>; </span><br></pre></td></tr></table></figure></li>
-</ol>
-<h5 id="带有ANY（SOME）或ALL谓词的子查询"><a href="#带有ANY（SOME）或ALL谓词的子查询" class="headerlink" title="带有ANY（SOME）或ALL谓词的子查询"></a>带有ANY（SOME）或ALL谓词的子查询</h5><ol>
-<li>ALL&gt;	大于子查询结果中的所有值</li>
-<li>&lt; ANY	小于子查询结果中的某个值    </li>
-<li>&lt; ALL	小于子查询结果中的所有值</li>
-<li>&#x3D;&gt; ANY	大于等于子查询结果中的某个值    </li>
-<li>&#x3D;&gt; ALL	大于等于子查询结果中的所有值</li>
-<li>!&#x3D;（或&lt;&gt;）ANY	不等于子查询结果中的某个值</li>
-<li>!&#x3D;（或&lt;&gt;）ALL	不等于子查询结果中的任何一个值<br> 查询非计算机科学系中比计算机科学系任意一个学生年龄小的学生姓名和年龄 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sname,Sage</span><br><span class="line">  <span class="keyword">FROM</span>    Student</span><br><span class="line">  <span class="keyword">WHERE</span> Sage <span class="operator">&lt;</span> <span class="keyword">ANY</span> (<span class="keyword">SELECT</span>  Sage</span><br><span class="line">                          <span class="keyword">FROM</span>    Student</span><br><span class="line">                          <span class="keyword">WHERE</span> Sdept<span class="operator">=</span> <span class="string">&#x27; CS &#x27;</span>)</span><br><span class="line">   <span class="keyword">AND</span> Sdept <span class="operator">&lt;&gt;</span> ‘CS <span class="string">&#x27;           /*父查询块中的条件 */</span></span><br></pre></td></tr></table></figure>
-  查询非计算机科学系中比计算机科学系所有学生年龄都小的学生姓名及年龄。<br>  用ALL谓词  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">SELECT</span> Sname,Sage</span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sage <span class="operator">&lt;</span> <span class="keyword">ALL</span></span><br><span class="line">                       (<span class="keyword">SELECT</span> Sage</span><br><span class="line">                        <span class="keyword">FROM</span> Student</span><br><span class="line">                        <span class="keyword">WHERE</span> Sdept<span class="operator">=</span> <span class="string">&#x27; CS &#x27;</span>)</span><br><span class="line">  <span class="keyword">AND</span> Sdept <span class="operator">&lt;&gt;</span> <span class="string">&#x27; CS ’;</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
-  聚集函数  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sname,Sage</span><br><span class="line">     <span class="keyword">FROM</span> Student</span><br><span class="line">     <span class="keyword">WHERE</span> Sage <span class="operator">&lt;</span> </span><br><span class="line">                            (<span class="keyword">SELECT</span> <span class="built_in">MIN</span>(Sage)</span><br><span class="line">                             <span class="keyword">FROM</span> Student</span><br><span class="line">                             <span class="keyword">WHERE</span> Sdept<span class="operator">=</span> <span class="string">&#x27; CS &#x27;</span>)</span><br><span class="line">       <span class="keyword">AND</span> Sdept <span class="operator">&lt;&gt;</span><span class="string">&#x27; CS &#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-  <img src="/img/ALL%E8%B0%93%E8%AF%8D.png"></li>
-</ol>
-<h5 id="带有EXISTS的子查询"><a href="#带有EXISTS的子查询" class="headerlink" title="带有EXISTS的子查询"></a>带有EXISTS的子查询</h5><ol>
-<li>带有EXISTS谓词的子查询不返回任何数据，只产生逻辑真值“true”或逻辑假值“false”。</li>
-<li>若内层查询结果非空，则外层的WHERE子句返回真值</li>
-<li>若内层查询结果为空，则外层的WHERE子句返回假值</li>
-<li>由EXISTS引出的子查询，其目标列表达式通常都用 * ，因为带EXISTS的子查询只返回真值或假值，给出列名无实际意义。<br>查询所有选修了1号课程的学生姓名。</li>
-<li>在Student中依次取每个元组的Sno值，用此值去检查SC表</li>
-<li>若SC中存在这样的元组，其Sno值等于此Student.Sno值，并且其Cno&#x3D; ‘1’，则取此Student.Sname送入结果表<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sname</span><br><span class="line">   <span class="keyword">FROM</span> Student</span><br><span class="line">   <span class="keyword">WHERE</span> <span class="keyword">EXISTS</span></span><br><span class="line">                 (<span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">                  <span class="keyword">FROM</span> SC</span><br><span class="line">                  <span class="keyword">WHERE</span> Sno<span class="operator">=</span>Student.Sno <span class="keyword">AND</span> Cno<span class="operator">=</span> <span class="string">&#x27; 1 &#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h5 id="UNION和UNION-ALL"><a href="#UNION和UNION-ALL" class="headerlink" title="UNION和UNION ALL"></a>UNION和UNION ALL</h5><ol>
-<li>UNION：将多个查询结果合并起来时，系统自动去掉重复元组</li>
-<li>UNION ALL：将多个查询结果合并起来时，保留重复元组<br>查询选修了课程1或者选修了课程2的学生。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sno</span><br><span class="line">        <span class="keyword">FROM</span> SC</span><br><span class="line">        <span class="keyword">WHERE</span> Cno<span class="operator">=</span><span class="string">&#x27; 1 &#x27;</span></span><br><span class="line">        <span class="keyword">UNION</span></span><br><span class="line">        <span class="keyword">SELECT</span> Sno</span><br><span class="line">        <span class="keyword">FROM</span> SC</span><br><span class="line">        <span class="keyword">WHERE</span> Cno<span class="operator">=</span> <span class="string">&#x27; 2 &#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/">展开全文 >></a>
         </p>
       
 
