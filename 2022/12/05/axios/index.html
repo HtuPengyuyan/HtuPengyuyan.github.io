@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2022 | HtuPengyuyan的博客</title>
+  <title>axios | HtuPengyuyan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HtuPengyuyan的博客">
-<meta property="og:url" content="http://example.com/archives/2022/index.html">
+  <meta name="description" content="自己创建一个APiAPI的分类REST API: restful （Representational State Transfer (资源)表现层状态转化）(1) 发送请求进行CRUD 哪个操作由请求方式来决定(2) 同一个请求路径可以进行多个操作(3) 请求方式会用到GET&#x2F;POST&#x2F;PUT&#x2F;DELETE非REST API: restless(1) 请求方式不决定请">
+<meta property="og:type" content="article">
+<meta property="og:title" content="axios">
+<meta property="og:url" content="http://example.com/2022/12/05/axios/index.html">
 <meta property="og:site_name" content="HtuPengyuyan的博客">
-<meta property="og:description" content="个人站">
+<meta property="og:description" content="自己创建一个APiAPI的分类REST API: restful （Representational State Transfer (资源)表现层状态转化）(1) 发送请求进行CRUD 哪个操作由请求方式来决定(2) 同一个请求路径可以进行多个操作(3) 请求方式会用到GET&#x2F;POST&#x2F;PUT&#x2F;DELETE非REST API: restless(1) 请求方式不决定请">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-05T12:01:47.000Z">
+<meta property="article:modified_time" content="2022-12-05T13:38:40.445Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
@@ -216,289 +218,177 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-axios" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/12/05/Promise/" class="archive-article-date">
-  	<time datetime="2022-12-05T13:16:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/12/05/Promise/">Promise</a>
+    <h1 class="article-title" itemprop="name">
+      axios
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/12/05/axios/" class="archive-article-date">
+        
+        <a href="/2022/12/05/axios/" class="archive-article-date">
   	<time datetime="2022-12-05T12:01:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/12/05/axios/">axios</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="自己创建一个APi"><a href="#自己创建一个APi" class="headerlink" title="自己创建一个APi"></a>自己创建一个APi</h1><h2 id="API的分类"><a href="#API的分类" class="headerlink" title="API的分类"></a>API的分类</h2><p>REST API: restful （Representational State Transfer (资源)表现层状态转化）<br>(1) 发送请求进行CRUD 哪个操作由请求方式来决定<br>(2) 同一个请求路径可以进行多个操作<br>(3) 请求方式会用到GET&#x2F;POST&#x2F;PUT&#x2F;DELETE<br>非REST API: restless<br>(1) 请求方式不决定请求的CRUD 操作<br>(2) 一个请求路径只对应一个操作<br>(3) 一般只有GET&#x2F;POST</p>
+<h2 id="使用json-server搭建REST-API"><a href="#使用json-server搭建REST-API" class="headerlink" title="使用json-server搭建REST API"></a>使用json-server搭建REST API</h2><h3 id="json-server是什么"><a href="#json-server是什么" class="headerlink" title="json-server是什么"></a>json-server是什么</h3><p>用来快速搭建REST API 的工具包</p>
+<h3 id="使用json-server"><a href="#使用json-server" class="headerlink" title="使用json-server"></a>使用json-server</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/typicode/json-server">在线文档: https://github.com/typicode/json-server</a></li>
+<li>下载: <code>npm install -g json-server</code></li>
+<li>目标根目录下创建数据库 json 文件: <code>db.json</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">&quot;posts&quot;</span>: [</span><br><span class="line">		&#123; <span class="string">&quot;id&quot;</span>: <span class="number">1</span>, <span class="string">&quot;title&quot;</span>: <span class="string">&quot;json-server&quot;</span>, <span class="string">&quot;author&quot;</span>: <span class="string">&quot;typicode&quot;</span> &#125;,</span><br><span class="line">		&#123; <span class="string">&quot;id&quot;</span>: <span class="number">2</span>, <span class="string">&quot;title&quot;</span>: <span class="string">&quot;json-server2&quot;</span>, <span class="string">&quot;author&quot;</span>: <span class="string">&quot;typicode&quot;</span> &#125;</span><br><span class="line">	],</span><br><span class="line">	<span class="string">&quot;comments&quot;</span>: [</span><br><span class="line">		&#123; <span class="string">&quot;id&quot;</span>: <span class="number">1</span>, <span class="string">&quot;body&quot;</span>: <span class="string">&quot;some comment&quot;</span>, <span class="string">&quot;postId&quot;</span>: <span class="number">1</span> &#125;</span><br><span class="line">	],</span><br><span class="line">	<span class="string">&quot;profile&quot;</span>: &#123; <span class="string">&quot;name&quot;</span>: <span class="string">&quot;typicode&quot;</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>启动服务器执行命令: <code>npx json-server --watch db.json</code></p>
+<h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/axios/axios">文档: https://github.com/axios/axios</a></li>
+<li>基于 xhr + promise 的异步 ajax请求库</li>
+<li>浏览器端&#x2F;node 端都可以使用</li>
+<li>支持请求／响应拦截器</li>
+<li>支持请求取消</li>
+<li>请求&#x2F;响应数据转换</li>
+<li>批量发送多个请求</li>
+</ol>
+<h2 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h2><p>axios(config): 通用&#x2F;最本质的发任意类型请求的方式<br>axios(url[, config]): 可以只指定url 发get 请求<br>axios.request(config): 等同于axios(config)<br>axios.get(url[, config]): 发get 请求<br>axios.delete(url[, config]): 发delete 请求<br>axios.post(url[, data, config]): 发post 请求<br>axios.put(url[, data, config]): 发put 请求</p>
+<p>axios.defaults.xxx: 请求的默认全局配置（method\baseURL\params\timeout…）<br>axios.interceptors.request.use(): 添加请求拦截器<br>axios.interceptors.response.use(): 添加响应拦截器</p>
+<p>axios.create([config]): 创建一个新的axios(它没有下面的功能)</p>
+<p>axios.Cancel(): 用于创建取消请求的错误对象<br>axios.CancelToken(): 用于创建取消请求的 token 对象<br>axios.isCancel(): 是否是一个取消请求的错误<br>axios.all(promises): 用于批量执行多个异步请求<br>axios.spread(): 用来指定接收所有成功数据的回调函数的方法</p>
+<h2 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h2><p>响应报文分为四个部分：响应头、响应行、响应体、相应空行</p>
+<h2 id="使用axios访问测试"><a href="#使用axios访问测试" class="headerlink" title="使用axios访问测试"></a>使用axios访问测试</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;testGet()&quot;</span>&gt;</span>GET请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;testPost()&quot;</span>&gt;</span>POST请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;testPut()&quot;</span>&gt;</span>PUT请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;testDelete()&quot;</span>&gt;</span>DELETE请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">testGet</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      axios.<span class="title function_">get</span>(<span class="string">&#x27;http://localhost:3000/posts&#x27;</span>) <span class="comment">// 返回一个数组，数组里有两个对象</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// axios.get(&#x27;http://localhost:3000/posts/1&#x27;) // 返回一个对象</span></span></span><br><span class="line"><span class="language-javascript">      <span class="comment">// axios.get(&#x27;http://localhost:3000/posts?id=1&#x27;) // 返回一个数组，数组里有一个对象</span></span></span><br><span class="line"><span class="language-javascript">      .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;/posts get&#x27;</span>, response.<span class="property">data</span>)</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">testPost</span>(<span class="params"></span>) &#123; <span class="comment">// 添加数据</span></span></span><br><span class="line"><span class="language-javascript">      axios.<span class="title function_">post</span>(<span class="string">&#x27;http://localhost:3000/posts&#x27;</span>, &#123;<span class="string">&quot;title&quot;</span>: <span class="string">&quot;json-server3&quot;</span>, <span class="string">&quot;author&quot;</span>: <span class="string">&quot;typicode&quot;</span> &#125;)</span></span><br><span class="line"><span class="language-javascript">      .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;/posts put&#x27;</span>, response.<span class="property">data</span>)</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">testPut</span>(<span class="params"></span>) &#123; <span class="comment">// 更新数据</span></span></span><br><span class="line"><span class="language-javascript">      axios.<span class="title function_">put</span>(<span class="string">&#x27;http://localhost:3000/posts/3&#x27;</span>, &#123;<span class="string">&quot;title&quot;</span>: <span class="string">&quot;json-server_put&quot;</span>, <span class="string">&quot;author&quot;</span>: <span class="string">&quot;typicode&quot;</span> &#125;)</span></span><br><span class="line"><span class="language-javascript">      .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;/posts post&#x27;</span>, response.<span class="property">data</span>)</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">testDelete</span>(<span class="params"></span>) &#123; <span class="comment">// 删除数据</span></span></span><br><span class="line"><span class="language-javascript">      axios.<span class="title function_">delete</span>(<span class="string">&#x27;http://localhost:3000/posts/3&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">      .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;/posts delete&#x27;</span>, response.<span class="property">data</span>)</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<h2 id="XHR-的-ajax-封装-简单版axios"><a href="#XHR-的-ajax-封装-简单版axios" class="headerlink" title="XHR 的 ajax 封装 (简单版axios)"></a>XHR 的 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=ajax&spm=1001.2101.3001.7020">ajax</a> 封装 (简单版axios)</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>函数的返回值为<code>promise</code>, 成功的结果为<code>response</code>, 失败的结果为<code>error</code></li>
+<li>能处理多种类型的请求: GET&#x2F;POST&#x2F;PUT&#x2F;DELETE</li>
+<li>函数的参数为一个配置对象</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">url</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 请求地址</span></span><br><span class="line">	<span class="attr">method</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 请求方式GET/POST/PUT/DELETE</span></span><br><span class="line">	<span class="attr">params</span>: &#123;&#125;, <span class="comment">// GET/DELETE 请求的 query 参数</span></span><br><span class="line">	<span class="attr">data</span>: &#123;&#125;, <span class="comment">// POST/PUT 请求的请求体参数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用测试"><a href="#使用测试" class="headerlink" title="使用测试"></a>使用测试</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. GET请求：从服务器端获取数据</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testGet</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">axios</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts&#x27;</span>,</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">    <span class="attr">params</span>:&#123;</span><br><span class="line">      <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="attr">xxx</span>: <span class="string">&#x27;abc&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(</span><br><span class="line">    <span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">alert</span>(error.<span class="property">message</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. POST请求：向服务器端添加数据</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testPost</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">axios</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts&#x27;</span>,</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="string">&quot;title&quot;</span>: <span class="string">&quot;json-server_post&quot;</span>,</span><br><span class="line">      <span class="string">&quot;author&quot;</span>: <span class="string">&quot;typicode_post&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(</span><br><span class="line">    <span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">alert</span>(error.<span class="property">message</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 3. PUT请求：服务器更新数据</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testPut</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">axios</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts/1&#x27;</span>,</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;PUT&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="string">&quot;title&quot;</span>: <span class="string">&quot;json-server_put&quot;</span>,</span><br><span class="line">      <span class="string">&quot;author&quot;</span>: <span class="string">&quot;typicode_put&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(</span><br><span class="line">    <span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">alert</span>(error.<span class="property">message</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. DELETE请求：服务器删除数据</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testDelete</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">axios</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts/2&#x27;</span>,</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;delete&#x27;</span></span><br><span class="line">  &#125;).<span class="title function_">then</span>(</span><br><span class="line">    <span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">alert</span>(error.<span class="property">message</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/12/05/axios/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/" class="archive-article-date">
-  	<time datetime="2022-12-01T08:46:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-01</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2022/12/05/Promise/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Promise
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ESM与CommonJS模块化</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/12/01/ESM%E4%B8%8ECommonJS%E6%A8%A1%E5%9D%97%E5%8C%96/">ESM与CommonJS模块化</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/29/webpack%E5%BA%94%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2022-11-29T08:49:56.474Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-29</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/28/lodash/" class="archive-article-date">
-  	<time datetime="2022-11-28T15:38:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/28/lodash/">lodash</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/20/less/" class="archive-article-date">
-  	<time datetime="2022-11-20T08:55:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/20/less/">less</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/20/rem%E5%B8%83%E5%B1%80/" class="archive-article-date">
-  	<time datetime="2022-11-20T04:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/20/rem%E5%B8%83%E5%B1%80/">rem布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/19/Echarts/" class="archive-article-date">
-  	<time datetime="2022-11-19T07:28:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/19/Echarts/">Echarts</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2022-11-06T12:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/06/Node-js%E5%9F%BA%E7%A1%80/">Node.js基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/10/19/ES6%E8%AF%AD%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2022-10-19T03:01:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/19/ES6%E8%AF%AD%E6%B3%95/">ES6语法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2022/page/2/">2</a><a class="extend next" rel="next" href="/archives/2022/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -526,8 +416,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-			isArchive: true,
+		isPost: true,
+			isArchive: false,
 				isTag: false,
 					isCategory: false,
 						open_in_new: false,
