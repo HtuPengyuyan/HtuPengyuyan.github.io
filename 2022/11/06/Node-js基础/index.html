@@ -16,7 +16,7 @@
 <meta property="og:description" content="Web服务器开发ip地址和端口号  ip地址用来定位计算机 端口号用来定位具体的应用程序 一切需要联网通信的软件都会占用一个端口号 端口号的范围从0-65536之间 在计算机中有一些默认端口号，最好不要去使用— 例如http服务的80 我们在开发的过程中使用一些简单好记的就可以了，例如3000、5000等没什么含义  介绍终端 命令行窗口（小黑屏）、CMD窗口、终端、shell 开始菜单 –&amp;gt">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-06T12:37:46.000Z">
-<meta property="article:modified_time" content="2022-11-28T14:21:09.938Z">
+<meta property="article:modified_time" content="2022-12-08T02:38:59.550Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
@@ -278,7 +278,7 @@
 <li>核心模块的标识就是模块的名字<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs=<span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> os=<span class="built_in">require</span>(<span class="string">&quot;os&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> path=<span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>)</span><br></pre></td></tr></table></figure>
 常见的核心模块有文件操作的<code>fs</code>模块，http服务构建的<code>http</code>模块，path路径操作模块，os操作系统信息模块…<br>文件模块</li>
 <li>由用户自己创建的模块</li>
-<li>文件模块的标识就是文件的路径（绝对路径，相对路径）<br> 相对路径使用.或..开头<br><strong>在Node中，没有全局作用域，只有模块作用域</strong><br>外部访问不到内部<br>内部也访问不到外部</li>
+<li>文件模块的标识就是文件的路径（绝对路径，相对路径）<br> 相对路径使用.或..开头<br> <strong>在Node中，没有全局作用域，只有模块作用域</strong><br> 外部访问不到内部<br> 内部也访问不到外部</li>
 </ul>
 </li>
 </ul>
@@ -319,7 +319,7 @@
 </ul>
 <h3 id="关于exports和module-exports"><a href="#关于exports和module-exports" class="headerlink" title="关于exports和module.exports"></a>关于exports和module.exports</h3><ul>
 <li>通过exports只能使用.的方式向外暴露内部变量   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span>.<span class="property">xxx</span>=xxx</span><br></pre></td></tr></table></figure></li>
-<li>module.exports既可以通过.的形式，也可以直接赋值&#x2F;&#x2F;&#x2F;(直接用这种方式以免出错)<br>   例子<br>   module.exports.属性&#x3D;属性值；<br>   module.exports.方法&#x3D;函数;   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">xxx</span>=xxx</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>=&#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li>module.exports既可以通过.的形式，也可以直接赋值&#x2F;&#x2F;&#x2F;(直接用这种方式以免出错)<br> 例子<br> module.exports.属性&#x3D;属性值；<br> module.exports.方法&#x3D;函数;   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">xxx</span>=xxx</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>=&#123;&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="包package"><a href="#包package" class="headerlink" title="包package"></a>包package</h3><ul>
 <li>CommonJS的包规范允许我们将一组相关的模块组合到一起，形成一组完整的工具</li>
@@ -585,19 +585,162 @@ post:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><sp
 <p>index.js(接口启动)</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>()</span><br><span class="line"><span class="comment">// 配置表单中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extends</span>: <span class="literal">false</span> &#125;))</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&#x27;./routerpost .js&#x27;</span>)</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/api&#x27;</span>, router)</span><br><span class="line"><span class="comment">// 加上请求前缀可以判断新老接口</span></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">80</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;run&#x27;</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><p>(HTTP协议详细解释)[<a target="_blank" rel="noopener" href="https://juejin.cn/post/7078956663440408612">HTTP协议、GET请求和POST请求的区别 - 掘金 (juejin.cn)</a>]</p>
+<h4 id="什么是HTTP协议"><a href="#什么是HTTP协议" class="headerlink" title="什么是HTTP协议"></a>什么是HTTP协议</h4><p>HTTP协议：是W3C制定的一种超文本传输协议。（通信协议：发送消息的模板提取被制定好）。</p>
+<h4 id="HTTP请求协议包括四部分"><a href="#HTTP请求协议包括四部分" class="headerlink" title="HTTP请求协议包括四部分"></a>HTTP请求协议包括四部分</h4><ul>
+<li><p>请求行</p>
+</li>
+<li><p>请求头</p>
+</li>
+<li><p>空白行</p>
+</li>
+<li><p>请求体</p>
+</li>
+</ul>
+<p>请求行</p>
+<p>包括三部分：</p>
+<ul>
+<li><p>第一部分：请求方式（7种）</p>
+<ul>
+<li><code>get（常用的）</code></li>
+<li><code>post（常用的）</code></li>
+<li><code>delete（常用的）</code></li>
+<li><code>put（常用的）</code></li>
+<li><code>head（常用的）</code></li>
+<li><code>options（常用的）</code></li>
+<li><code>trace（常用的）</code></li>
+</ul>
+</li>
+<li><p>第二部分：URI</p>
+<ul>
+<li>URI：统一资源标识符。代表网络中某个资源的名字。但是通过URI是无法定位资源的。</li>
+<li>URI和URL什么关系，有什么区别？<ul>
+<li>URL包括URI</li>
+<li><a href="https://link.juejin.cn/?target=http://localhost:8080/servlet05/index.html">http://localhost:8080/servlet05/index.html</a> 这是URL。</li>
+<li>&#x2F;servlet05&#x2F;index.html 这是URI</li>
+</ul>
+</li>
+</ul>
+<p>第三部分：HTTP版本协议号 <strong>请求头</strong></p>
+<p>请求的主机</p>
+<p>主机的端口</p>
+<p>浏览器信息</p>
+<p>平台信息</p>
+<p>cookie信息</p>
+<p>…. <strong>空白行</strong></p>
+<p>空白行是用来区分“请求头”和“请求体” <strong>请求体</strong></p>
+<p>向服务器发送的具体数据 <strong>HTTP的响应协议（S – &gt; B）</strong></p>
+<p>HTTP的相应协议包括：4部分</p>
+<ul>
+<li>状态行</li>
+<li>响应头</li>
+<li>空白行</li>
+<li>响应体</li>
+</ul>
+<p>HTTP响应协议的具体报文：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">HTTP</span>/<span class="number">1.1</span> <span class="number">200</span> ok                                     状态行</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Type</span>: text/html;charset=<span class="variable constant_">UTF</span>-<span class="number">8</span>               响应头</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Length</span>: <span class="number">160</span></span><br><span class="line"><span class="title class_">Date</span>: <span class="title class_">Mon</span>, <span class="number">08</span> <span class="title class_">Nov</span> <span class="number">2021</span> <span class="number">13</span>:<span class="number">19</span>:<span class="number">32</span> <span class="variable constant_">GMT</span></span><br><span class="line"><span class="title class_">Keep</span>-<span class="title class_">Alive</span>: timeout=<span class="number">20</span></span><br><span class="line"><span class="title class_">Connection</span>: keep-alive</span><br><span class="line">                                                    空白行</span><br><span class="line">&lt;!doctype html&gt;                                     响应体</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>from get servlet<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>from get servlet<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>状态行（三部分组成）</p>
+<ul>
+<li><p>第一部分：协议版本号（HTTP&#x2F;1.1）</p>
+</li>
+<li><p>第二部分：状态码（HTTP协议中规定的响应状态号。不同的响应结果对应不同的号码。）</p>
+<ul>
+<li>200 表示请求响应成功，正常结束。</li>
+<li>400 表示访问的资源不存在，通常是因为要么是你路径写错了，要么是路径写对了，但是服务器中对应的资源并没有启动成功，总之404错误是前端错误。</li>
+<li>450 表示前端发送的请求方式与后端请求的处理方法不一致发送：<ul>
+<li>比如：前端是POST请求，后端的处理方式按照get方法进行处理时，发送405</li>
+<li>比如：前端是GET请求，后端的处理方式按照post方法进行处理时，发送405</li>
+</ul>
+</li>
+<li>500 表示服务器端的程序出现了异常。一般会认为是服务器端的错误导致的。</li>
+<li>以4开始的，一般是浏览器端的错误导致的。</li>
+<li>以5开始的，一般是服务器端的错误导致的。</li>
+</ul>
+<p>​             第三部分：状态的描述信息</p>
+<ul>
+<li>ok 表示正常成功结束</li>
+<li>not found 表示资源找不到</li>
+</ul>
+</li>
+<li><p>响应头</p>
+<ul>
+<li>响应的内容类型</li>
+<li>响应的内容长度</li>
+<li>响应的时间</li>
+<li>…</li>
+</ul>
+</li>
+<li><p>空白行</p>
+<ul>
+<li>用来分隔“响应头”和“响应体”的。</li>
+</ul>
+</li>
+<li><p>响应体</p>
+<ul>
+<li>响应体就是响应的正文，这些内容是一个长的字符串，这个字符串被浏览器渲染，解释并执行，最终展示出效果。</li>
+</ul>
+</li>
+</ul>
+<p><strong>具体报文：GET请求</strong></p>
+</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">GET /servlet05/getServlet?username=lucy&amp;userpwd=1111 HTTP/1.1 请求行</span><br><span class="line"><span class="section">Host: localhost:8080 请求头</span></span><br><span class="line"><span class="section">Connection: keep-alive</span></span><br><span class="line"><span class="section">sec-ch-ua: “Google Chrome”;v=“95”, “Chromium”;v=“95”, “;Not A Brand”;v=“99”</span></span><br><span class="line"><span class="section">sec-ch-ua-mobile: ?0</span></span><br><span class="line"><span class="section">sec-ch-ua-platform: “Windows”</span></span><br><span class="line"><span class="section">Upgrade-Insecure-Requests: 1</span></span><br><span class="line"><span class="section">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) </span></span><br><span class="line">Chrome/95.0.4638.54</span><br><span class="line">Safari/537.36</span><br><span class="line"><span class="section">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,</span></span><br><span class="line">application/signed-exchange;v=b3;q=0.9</span><br><span class="line"><span class="section">Sec-Fetch-Site: same-origin</span></span><br><span class="line"><span class="section">Sec-Fetch-Mode: navigate</span></span><br><span class="line"><span class="section">Sec-Fetch-User: ?1</span></span><br><span class="line"><span class="section">Sec-Fetch-Dest: document</span></span><br><span class="line"><span class="section">Referer: http://localhost:8080/servlet05/index.html</span></span><br><span class="line"><span class="section">Accept-Encoding: gzip, deflate, br</span></span><br><span class="line"><span class="section">Accept-Language: zh-CN,zh;q=0.9</span></span><br><span class="line">空白行</span><br><span class="line">请求体</span><br></pre></td></tr></table></figure>
+
+<h5 id="HTTP请求协议的具体报文：POST请求"><a href="#HTTP请求协议的具体报文：POST请求" class="headerlink" title="HTTP请求协议的具体报文：POST请求"></a><strong>HTTP请求协议的具体报文：POST请求</strong></h5><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">POST /servlet05/postServlet HTTP/1.1 请求行</span><br><span class="line"><span class="section">Host: localhost:8080 请求头</span></span><br><span class="line"><span class="section">Connection: keep-alive</span></span><br><span class="line"><span class="section">Content-Length: 25</span></span><br><span class="line"><span class="section">Cache-Control: max-age=0</span></span><br><span class="line"><span class="section">sec-ch-ua: “Google Chrome”;v=“95”, “Chromium”;v=“95”, “;Not A Brand”;v=“99”</span></span><br><span class="line"><span class="section">sec-ch-ua-mobile: ?0</span></span><br><span class="line"><span class="section">sec-ch-ua-platform: “Windows”</span></span><br><span class="line"><span class="section">Upgrade-Insecure-Requests: 1</span></span><br><span class="line"><span class="section">Origin: http://localhost:8080</span></span><br><span class="line"><span class="section">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="section">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36</span></span><br><span class="line"><span class="section">Accept: </span></span><br><span class="line">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line"><span class="section">Sec-Fetch-Site: same-origin</span></span><br><span class="line"><span class="section">Sec-Fetch-Mode: navigate</span></span><br><span class="line"><span class="section">Sec-Fetch-User: ?1</span></span><br><span class="line"><span class="section">Sec-Fetch-Dest: document</span></span><br><span class="line"><span class="section">Referer: http://localhost:8080/servlet05/index.html</span></span><br><span class="line"><span class="section">Accept-Encoding: gzip, deflate, br</span></span><br><span class="line"><span class="section">Accept-Language: zh-CN,zh;q=0.9</span></span><br><span class="line">空白行</span><br><span class="line">username=lisi&amp;userpwd=123 请求体</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="get请求和post请求的区别"><a href="#get请求和post请求的区别" class="headerlink" title="get请求和post请求的区别"></a>get请求和post请求的区别</h3><ol>
-<li>GET把参数包含在URL中，POST通过request body传递参数<br>所以get的参数长度有限制，而post无限制</li>
+<li>GET把参数包含在URL中，POST通过request body传递参数<br> 所以get的参数长度有限制，而post无限制</li>
 <li>GET在浏览器回退时是无害的，而POST会再次提交请求。</li>
 <li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
 <li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
 <li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制</li>
-<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息（相对安全，因为安全更加不加密有关）</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息（相对安全，因为安全和加不加密有关）</li>
 </ol>
+<p>第二种解释</p>
+<p>get请求：发送数据的时候，数据会挂在URI的后面，并且在URI后面添加一个“？”，“？”后面是数据。这样会导致发送的数据会显示在浏览器的地址栏上。（get请求在“请求行”上发送数据）</p>
+<ul>
+<li><a href="https://link.juejin.cn/?target=http://localhost:8080/servlet05/getServlet?username=zhangsan&userpwd=1234">http://localhost:8080/servlet05/getServlet?username=zhangsan&userpwd=1234</a></li>
+</ul>
+<p>post请求：发送数据的时候，在请求体当中发送。不会回显到浏览器的地址栏上，也就是说post发送的数据，在浏览器地址栏上看不到。（post在“请求体”当中发送数据）</p>
+<p>get请求：只能发送普通的字符串。并且发送的字符串长度有限制，不同的浏览器限制不同。这个没有明确的规范。</p>
+<p>get请求：无法发送大数据量。</p>
+<p>get请求：支持缓存</p>
+<p>post请求：可以发送任何类型的数据，包括普通字符串，流媒体等信息：视频、声音、图片。</p>
+<p>post请求：可以发送大数据量，理论上没有长度限制。</p>
+<p>get请求：在W3C中是这样说的：<strong>get请求比较适合从服务端获取数据</strong>。</p>
+<p>post请求：在W3C中是这样说的：<strong>post请求比较适合从服务端传送数据</strong>。 可能好多人，一看到说get请求会把内容显示在地址栏上，就是不安全的</p>
+<p>GET请求是安全的</p>
+<p>et请求是绝对安全的，为什么？因为get请求只是为了从服务器上获取数据。不会对服务器造成威胁。</p>
+<p>POST请求是危险的</p>
+<p>为什么？因为post请求是向服务器提交数据，如果这些数据通过后门的方式进入到服务器当中，服务器是很危险的。另外post是为了提交数据，所以一般情况下拦截请求的时候，大部分会选择拦截（监听）post请求。</p>
+<h4 id="GET请求和POST请求如何选择，什么时候使用GET请求，什么时候使用POST请求？"><a href="#GET请求和POST请求如何选择，什么时候使用GET请求，什么时候使用POST请求？" class="headerlink" title="GET请求和POST请求如何选择，什么时候使用GET请求，什么时候使用POST请求？"></a>GET请求和POST请求如何选择，什么时候使用GET请求，什么时候使用POST请求？</h4><ul>
+<li>怎么选择GET请求和POST请求呢？衡量标准是什么呢？你这个请求是想获取服务器端的数据，还是想向服务器发送数据，如果你是想从服务器上获取资源，建议使用GET请求，如果是为了向服务器提交数据，建议使用POST请求。</li>
+<li>大部分的form表单提交，都是post方式，因为form表单中要填写大量的数据，这些数据是收集用户的信息，一般是需要传给服务器，服务器将这些数据保持或修改等。</li>
+<li>如果表单中又敏感信息，还是建议使用post请求，因为get请求会回显铭感信息到浏览器地址栏上。（例如：密码信息）</li>
+<li>做文件上传，一定是post请求。要传的数据不只是普通文本。</li>
+<li>其他情况都可使用get请求</li>
+<li>不管你是get请求还是post请求，发送的请求数据格式是完全相同的，只不过位置不同，格式都是统一的：<ul>
+<li><strong>name&#x3D;value&amp;name&#x3D;value&amp;name&#x3D;value&amp;name&#x3D;value</strong></li>
+<li>name是什么？<ul>
+<li>以form表单为例：form表单中input标签的name。</li>
+</ul>
+</li>
+<li>value是什么？<ul>
+<li>以form表单为例：form表单中input标签的value。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="postman的body四个参数类型"><a href="#postman的body四个参数类型" class="headerlink" title="postman的body四个参数类型"></a>postman的body四个参数类型</h3><ol>
-<li>form-data<br>既可以上传键值对，也可以上传文件。当上传的字段是文件时，会有content-type来说明文件类型；<br>content-disposition用来说明字段的一些信息；由于有boundary隔离，所以multipart&#x2F;form-data既可以上传文件，也可以上传键值对，它采用了键值对的方式，所以可以上传多个文件。</li>
-<li>x-www-form-urlencoded：<br>就是application&#x2F;x-www-from-urlencoded,会将表单内的数据转换为键值对</li>
-<li>raw<br>可以上传任意格式的文本，可以上传text、json、xml、html等</li>
-<li>binary<br>相当于content-type:application&#x2F;octet-stream,从字面意思得知，只可以上传二进制数据，通常用来上传文件，由于没有键值，所以，一次只能上传一个文件。</li>
+<li>form-data<br> 既可以上传键值对，也可以上传文件。当上传的字段是文件时，会有content-type来说明文件类型；<br> content-disposition用来说明字段的一些信息；由于有boundary隔离，所以multipart&#x2F;form-data既可以上传文件，也可以上传键值对，它采用了键值对的方式，所以可以上传多个文件。</li>
+<li>x-www-form-urlencoded：<br> 就是application&#x2F;x-www-from-urlencoded,会将表单内的数据转换为键值对</li>
+<li>raw</li>
+<li>可以上传任意格式的文本，可以上传text、json、xml、html等</li>
+<li>binary<br> 相当于content-type:application&#x2F;octet-stream,从字面意思得知，只可以上传二进制数据，通常用来上传文件，由于没有键值，所以，一次只能上传一个文件。</li>
 </ol>
 <h3 id="COR跨域资源共享"><a href="#COR跨域资源共享" class="headerlink" title="COR跨域资源共享"></a>COR跨域资源共享</h3><ul>
 <li>安装中间件:<code>npm install cors</code></li>
