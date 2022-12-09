@@ -15,11 +15,13 @@
 <meta property="og:site_name" content="HtuPengyuyan的博客">
 <meta property="og:description" content="前端模块化（CMJ与ESM）1.为什么要模块化 把具有不同功能的板块封装为不同的模块，比如把涉及到网络请求的函数全都写在一个network.js文件里，把一些工具类的函数写在tool.js文件里，框架里的每一个组件都占据一个.vue文件,避免所有代码都写到一起，难以管理，同时还可以提高代码的复用率 通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数和类。  2.模块化规范目前流行">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200527142606816.PNG">
 <meta property="article:published_time" content="2022-12-01T08:46:41.000Z">
-<meta property="article:modified_time" content="2022-12-08T15:41:11.160Z">
+<meta property="article:modified_time" content="2022-12-09T02:32:41.862Z">
 <meta property="article:author" content="HtuPengyuyan">
 <meta property="article:tag" content="Css,JavaScript">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200527142606816.PNG">
   
     <link rel="alternative" href="/atom.xml" title="HtuPengyuyan的博客" type="application/atom+xml">
   
@@ -272,6 +274,8 @@
 </ol>
 <h2 id="二、ES6Module（ESM）"><a href="#二、ES6Module（ESM）" class="headerlink" title="二、ES6Module（ESM）"></a>二、ES6Module（ESM）</h2><ol>
 <li><p>ES6 在<strong>语言标准的层面上，实现了模块功能</strong>，而且实现得相当简单，旨在成为浏览器和服务器通用的模块解决方案。其模块功能主要由两个命令构成：<code>export</code>和<code>import</code>。<code>export</code>命令用于规定模块的对外接口，<code>import</code>命令用于输入其他模块提供的功能。</p>
+</li>
+<li><p>在ES6之前，要使用一个模块，必须使用require函数将一个模块引入，但ES6并没有采用这种模块化方案，在ES6中使用import指令引入一个模块或模块中的部分接口，并没有将require写入标准，这也就是说require对于ES6代码而言，只是一个普通函数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 定义模块 math.js **/</span></span><br><span class="line"><span class="keyword">var</span> basicNum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> add = <span class="keyword">function</span> (<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> &#123; basicNum, add &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/** 引用模块 **/</span></span><br><span class="line"><span class="keyword">import</span> &#123; basicNum, add &#125; <span class="keyword">from</span> <span class="string">&#x27;./math&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">ele</span>) &#123;</span><br><span class="line">    ele.<span class="property">textContent</span> = <span class="title function_">add</span>(<span class="number">99</span> + basicNum);</span><br></pre></td></tr></table></figure>
 
 
@@ -282,6 +286,8 @@
 <li><p>ES6的模块不是对象，<code>import</code>命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。也正因为这个，使得静态分析成为可能。</p>
 </li>
 </ol>
+<p>export default具体使用</p>
+<p>其实export default和export的功能是一样的，但是一个文件里面只能有一个export default语句。<br><strong>export default是把所有{}中所有的内容都赋值给default，然后当我们导入的时候也可以改变名称，但是其实是把所有的default导入了</strong></p>
 <h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a><strong>使用方式</strong></h4><p><strong>使用liveserver打开</strong></p>
 <p>首先在使用上，唯一的区别就是需要在<code>script</code>标签上添加一个<code>type=&quot;module&quot;</code>的属性来表示这个文件是作为<code>module</code>的方式来运行的。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;module&quot;</span>&gt;</span><br><span class="line">  <span class="keyword">import</span> message <span class="keyword">from</span> <span class="string">&#x27;./message.js&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(message) <span class="comment">// hello world</span></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
@@ -290,8 +296,11 @@
 <p>message.js</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">&#x27;hello world&#x27;</span></span><br></pre></td></tr></table></figure>
 
-
-
+<p>这里说一下为什么不能用浏览器直接打开而是需要open livesever</p>
+<p>为什么会报错?<br>不会引起跨域的引入外部文件的就link标签,img标签,script标签,除开这三个,只要不符合同源策略(协议,域名,端口)就会引发跨域问题</p>
+<p><img src="https://img-blog.csdnimg.cn/20200527142606816.PNG" alt="avatar"></p>
+<p>解决方法:<br>通过搭建本地一个服务器去进行资源的问题来解决跨域问题<br>例如: 1.<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=node&spm=1001.2101.3001.7020">node</a> 打开 2.phpStydy 打开</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40544291/article/details/106380716?ops_request_misc=&request_id=&biz_id=102&utm_term=%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8import%E5%BC%95%E5%85%A5%E6%A8%A1%E5%9D%97%E6%97%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80html&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-106380716.142%5Ev68%5Epc_rank_34_queryrelevant25,201%5Ev4%5Eadd_ask,213%5Ev2%5Et3_control2&spm=1018.2226.3001.4187">(50条消息) 在html中使用import遇到的问题_麦兜:)的博客-CSDN博客_html import</a></p>
 <h4 id="关于一些导入的用法"><a href="#关于一些导入的用法" class="headerlink" title="关于一些导入的用法"></a>关于一些导入的用法</h4><p>原生的ESModules import导入，后面不能省略，后缀名、不能省略index.js，必须以“.&#x2F;“或者”&#x2F;“开始，相对和绝对路径，也可以直接使用连接完成的url。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span> <span class="comment">//不能省略后缀名</span></span><br><span class="line"><span class="keyword">import</span> &#123; lowercase &#125; <span class="keyword">from</span> <span class="string">&#x27;./utils/index.js&#x27;</span> <span class="comment">//不能省略index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;/04-import/module.js&#x27;</span> <span class="comment">//不能省略“./“（不然会被当成第三方模块）或者”/“（根目录开始）</span></span><br><span class="line"><span class="keyword">import</span> &#123; name &#125; <span class="keyword">from</span> <span class="string">&#x27;http://localhost:3000/04-import/module.js&#x27;</span> <span class="comment">//可以直接使用完整的url</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// --------------</span></span><br><span class="line"><span class="keyword">import</span> &#123;&#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="comment">// 只加载模块导入模块，不导入具体变量、成员</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ---------------</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> mod <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mod)</span><br><span class="line"><span class="comment">// 导入全部变量，并且作为 mod 内的属性</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ---------------</span></span><br><span class="line"><span class="keyword">var</span> modulePath = <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="title function_">import</span>(modulePath).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params"><span class="variable language_">module</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">module</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 当时导入路径为变量时，可通过全局函数 import 导入，</span></span><br><span class="line"><span class="comment">// 返回一个异步函数 promise，在回调函数中输出导入的值</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// ----------------</span></span><br><span class="line"><span class="keyword">import</span> &#123; name, age, <span class="keyword">default</span> <span class="keyword">as</span> title &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="keyword">import</span> title, &#123; name, age &#125; <span class="keyword">from</span> <span class="string">&#x27;./module.js&#x27;</span></span><br><span class="line"><span class="comment">// title为导入的默认值</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name, age, title)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同时导入 其他值和默认值时，可以这样写</span></span><br></pre></td></tr></table></figure>
 
@@ -331,56 +340,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903773823827981#heading-6">探讨ES6的import export default 和CommonJS的require module.exports - 掘金 (juejin.cn)</a></p>
 <p>j</p>
 
       
