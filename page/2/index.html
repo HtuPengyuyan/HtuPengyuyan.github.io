@@ -366,10 +366,8 @@
 <p>用&#x2F;deep&#x2F;深度监听</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;el-<span class="selector-tag">table</span> </span><br><span class="line">    class=&quot;ones&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/el-<span class="selector-tag">table</span>&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">  /deep/ <span class="selector-class">.ones</span>&#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#e2d2d2</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
+<h3 id="简述const-data-res-x3D-this-http-post的作用"><a href="#简述const-data-res-x3D-this-http-post的作用" class="headerlink" title="简述const {data:res}&#x3D;this.$http.post的作用"></a>简述const {data:res}&#x3D;this.$http.post的作用</h3><p>const{data} &#x3D; await login(XXX) 就是es6中的解构赋值，将login(XXX)的data属性取出来。</p>
+<p>const {data:res} &#x3D; await login(XXX)就是将data重命名为res。</p>
 <h3 id="添加分类表单"><a href="#添加分类表单" class="headerlink" title="添加分类表单"></a>添加分类表单</h3>
       
 
